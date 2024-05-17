@@ -9,11 +9,13 @@ type BaseCheckboxProps = CheckboxProps & {
   error?: string;
 };
 
+// @ts-ignore
 const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
   ({ error, label, style, ...props }, ref) => {
     return (
       <View>
         <View className="item-center flex-row">
+          {/* @ts-ignore */}
           <Checkbox style={[{ marginRight: 8 }, style]} ref={ref} {...props} />
           <Text className="text-sm font-medium text-black">{label}</Text>
         </View>

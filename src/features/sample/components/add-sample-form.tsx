@@ -7,6 +7,7 @@ import { Button } from '@/shared/components/ui/button';
 import { CheckBox } from '@/shared/components/ui/checkbox';
 import { Input } from '@/shared/components/ui/input';
 import { ToggleSwitch } from '@/shared/components/ui/switch';
+import { createSampleData } from '@/shared/data/create-sample';
 
 export const addSampleSchema = z.object({
   email: z.string().email().toLowerCase(),
@@ -20,14 +21,20 @@ export const addSampleSchema = z.object({
 
 export type AddSample = z.infer<typeof addSampleSchema>;
 
-export type AddSampleFormProps = {
-  onSubmit: SubmitHandler<AddSample>;
-};
-
-export const AddSampleForm = ({ onSubmit }: AddSampleFormProps) => {
+export const AddSampleForm = () => {
   const { control, handleSubmit, formState } = useForm<AddSample>({
     resolver: zodResolver(addSampleSchema),
   });
+
+  const onSubmit: SubmitHandler<AddSample> = async data => {
+    const createdSample = await createSampleData({
+      title: data.email,
+      body: data.description,
+      userId: 1,
+    });
+    // eslint-disable-next-line no-console
+    console.log(createdSample);
+  };
 
   return (
     <View className="flex flex-col">

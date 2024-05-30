@@ -39,3 +39,9 @@ android/
 
 # iOS
 ios/
+
+# env
+.env
+.env.*
+.env-*
+!**.example.env

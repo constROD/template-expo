@@ -22,7 +22,6 @@ pnpm i
 ```bash
 pnpm android
 pnpm ios
-pnpm web
 ```
 
 ## Rules

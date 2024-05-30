@@ -15,7 +15,6 @@
   "scripts": {
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo run:web",
     "clean": "rm -rf .expo",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "pnpm lint --fix",

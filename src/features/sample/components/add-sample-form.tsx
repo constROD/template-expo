@@ -55,7 +55,7 @@ export const AddSampleForm = () => {
       <View>
         <ToggleSwitch label="sample switch" control={control} name="switch" />
       </View>
-      <Button label="Submit" onPress={handleSubmit(onSubmit)} />
+      <Button onPress={handleSubmit(onSubmit)}>Submit</Button>
     </View>
   );
 };

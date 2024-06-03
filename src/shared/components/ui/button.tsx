@@ -4,18 +4,18 @@ import { Text, TouchableOpacity, type TouchableOpacityProps } from 'react-native
 import { cn } from '@/shared/utils/classnames';
 
 type ButtonProps = TouchableOpacityProps & {
-  label: React.ReactNode;
+  children: React.ReactNode;
 };
 
 const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
-  ({ label, className, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
       <TouchableOpacity
         className={cn('my-2 rounded bg-blue-500 px-4 py-2', className)}
         ref={ref}
         {...props}
       >
-        <Text className="text-center text-white">{label}</Text>
+        <Text className="text-center text-white">{children}</Text>
       </TouchableOpacity>
     );
   }

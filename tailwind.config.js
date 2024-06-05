@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './src/app/**/*.{ts,tsx}',
     './src/features/**/*.{ts,tsx}',
-    './src/shared/components/**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
   ],
   presets: [require('nativewind/preset')],
   theme: {

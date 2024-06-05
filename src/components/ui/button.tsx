@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, type TouchableOpacityProps } from 'react-native';
 
-import { cn } from '@/shared/utils/classnames';
+import { cn } from '@/utils/classnames';
 
 type ButtonProps = TouchableOpacityProps & {
   children: React.ReactNode;

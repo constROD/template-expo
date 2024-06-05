@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 
 import { AddSampleForm } from '@/features/sample/components/add-sample-form';
 import { SampleList } from '@/features/sample/components/sample-list';
-import { useSampleStore } from '@/shared/stores/use-sample-store';
+import { useSampleStore } from '@/stores/use-sample-store';
 
 export default function SamplePage() {
   const { data } = useSampleStore();

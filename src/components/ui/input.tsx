@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
 import { TextInput as RNTextInput, Text, View, type TextInputProps } from 'react-native';
 
-import { cn } from '@/shared/utils/classnames';
+import { cn } from '@/utils/classnames';
 
 type BaseTextInputProps = TextInputProps & {
   label?: string;

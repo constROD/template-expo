@@ -3,11 +3,11 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
 
-import { Button } from '@/shared/components/ui/button';
-import { CheckBox } from '@/shared/components/ui/checkbox';
-import { Input } from '@/shared/components/ui/input';
-import { ToggleSwitch } from '@/shared/components/ui/switch';
-import { createSampleData } from '@/shared/data/create-sample';
+import { Button } from '@/components/ui/button';
+import { CheckBox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { ToggleSwitch } from '@/components/ui/switch';
+import { createSampleData } from '@/data/create-sample';
 
 export const addSampleSchema = z.object({
   email: z.string().email().toLowerCase(),

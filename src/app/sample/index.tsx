@@ -11,7 +11,14 @@ export default function SamplePage() {
   console.log('Sample Store Data: ', data);
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+      }}
+    >
       <Text>This is User Page</Text>
       <AddSampleForm />
       <SampleList />

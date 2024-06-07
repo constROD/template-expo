@@ -37,7 +37,12 @@ export const AddSampleForm = () => {
   };
 
   return (
-    <View className="flex flex-col">
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+      }}
+    >
       <Input control={control} name="email" label="Email" error={formState.errors.email?.message} />
       <Input control={control} name="name" label="Name" error={formState.errors.name?.message} />
       <Input

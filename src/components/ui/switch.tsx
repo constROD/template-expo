@@ -8,11 +8,11 @@ type BaseSwitchProps = SwitchProps & {
 
 const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, style, ...props }, ref) => {
   return (
-    <View className="flex-row">
+    <View>
       <Text style={{ alignSelf: 'center' }}>{label}</Text>
       <Switch
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
         ref={ref}
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
         style={[{ marginLeft: 80 }, style]}
         {...props}
       />

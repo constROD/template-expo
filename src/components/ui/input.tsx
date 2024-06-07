@@ -2,20 +2,19 @@ import React, { forwardRef } from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
 import { TextInput as RNTextInput, Text, View, type TextInputProps } from 'react-native';
 
-import { cn } from '@/utils/classnames';
-
 type BaseTextInputProps = TextInputProps & {
+  type?: 'text' | 'password';
   label?: string;
   error?: string;
 };
 
 const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
-  ({ label, error, className, ...props }, ref) => {
+  ({ label, error, type, ...props }, ref) => {
     return (
       <View>
-        {label && <Text className="text-sm font-medium">{label}</Text>}
-        <RNTextInput ref={ref} className={cn('text-black', className)} {...props} />
-        {error && <Text className="text-sm text-red-500">{error}</Text>}
+        {label && <Text style={{ color: 'black' }}>{label}</Text>}
+        <RNTextInput ref={ref} secureTextEntry={type === 'password'} {...props} />
+        {error && <Text style={{ color: 'red' }}>{error}</Text>}
       </View>
     );
   }

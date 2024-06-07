@@ -14,12 +14,19 @@ const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
   ({ error, label, style, ...props }, ref) => {
     return (
       <View>
-        <View className="item-center flex-row">
+        <View style={{ alignItems: 'center' }}>
           {/* @ts-ignore */}
-          <Checkbox style={[{ marginRight: 8 }, style]} ref={ref} {...props} />
-          <Text className="text-sm font-medium text-black">{label}</Text>
+          <Checkbox ref={ref} style={[{ marginRight: 8 }, style]} {...props} />
+          <Text
+            style={{
+              color: 'black',
+              textAlign: 'center',
+            }}
+          >
+            {label}
+          </Text>
         </View>
-        {error && <Text className="text-sm text-red-500">{error}</Text>}
+        {error && <Text style={{ color: 'red' }}>{error}</Text>}
       </View>
     );
   }

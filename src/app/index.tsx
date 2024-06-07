@@ -1,10 +1,27 @@
 import { Link } from 'expo-router';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
+
+import { ROUTES } from '@/constants/routes';
 
 export default function HomePage() {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Link href="/sample">Go to Sample Page</Link>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+      }}
+    >
+      <Link href={ROUTES.SAMPLE}>
+        <Text
+          style={{
+            fontFamily: 'Poppins_400Regular',
+          }}
+        >
+          Go to Sample Page
+        </Text>
+      </Link>
     </View>
   );
 }

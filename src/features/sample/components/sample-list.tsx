@@ -13,9 +13,22 @@ export function SampleList() {
     );
 
   return (
-    <ScrollView className="flex flex-col gap-5">
+    <ScrollView
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+        padding: 10,
+      }}
+    >
       {data.map(sample => (
-        <View className="flex flex-col gap-2" key={sample.id}>
+        <View
+          key={sample.id}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+          }}
+        >
           <Text>ID: {sample.id}</Text>
           <Text>TITLE: {sample.title}</Text>
           <Text>BODY: {sample.body}</Text>

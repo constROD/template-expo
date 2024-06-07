@@ -33,8 +33,10 @@
   - `src/constants` - for constants.
   - `src/data` - for data access layer. (e.g. `api`, `database`).
   - `src/lib` - for 3rd party integrations libraries.
-  - `src/mutation` - for `react-query` mutation. **(Only if needed)**
-  - `src/query` - for `react-query` query. **(Only if needed)**
-  - `src/stores` - for zustand stores.
+  - `src/hooks` - for custom hooks.
+    - `src/hooks/use-<hook-name>.ts` - for custom hook.
+    - `src/hooks/mutation/use-<hook-name>.ts` - for `react-query` mutation. **(Only if needed)**
+    - `src/hooks/query/use-<hook-name>.ts` - for `react-query` query. **(Only if needed)**
+    - `src/hooks/stores/use-<hook-name>.ts` - for zustand stores.
   - `src/types` - for types.
   - `src/utils` - for utilities.

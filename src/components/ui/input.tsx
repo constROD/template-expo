@@ -4,6 +4,8 @@ import { TextInput as RNTextInput, View, type TextInputProps } from 'react-nativ
 
 import { ThemedText } from './themed-text';
 
+import { THEME_COLORS } from '@/constants/theme';
+
 type BaseTextInputProps = TextInputProps & {
   type?: 'text' | 'password';
   label?: string;
@@ -30,7 +32,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
             props.style,
           ]}
         />
-        {error && <ThemedText style={{ color: 'red' }}>{error}</ThemedText>}
+        {error && <ThemedText style={{ color: THEME_COLORS.danger }}>{error}</ThemedText>}
       </View>
     );
   }

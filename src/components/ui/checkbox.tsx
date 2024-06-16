@@ -11,12 +11,12 @@ type BaseCheckboxProps = CheckboxProps & {
 
 // @ts-ignore
 const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
-  ({ error, label, style, ...props }, ref) => {
+  ({ error, label, ...props }, ref) => {
     return (
       <View>
         <View style={{ alignItems: 'center' }}>
           {/* @ts-ignore */}
-          <Checkbox ref={ref} style={[{ marginRight: 8 }, style]} {...props} />
+          <Checkbox ref={ref} style={[{ marginRight: 8 }, props.style]} {...props} />
           <Text
             style={{
               color: 'black',

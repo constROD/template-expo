@@ -1,6 +1,8 @@
 import { forwardRef } from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
-import { Switch, Text, View, type SwitchProps } from 'react-native';
+import { Switch, View, type SwitchProps } from 'react-native';
+
+import { ThemedText } from './themed-text';
 
 type BaseSwitchProps = SwitchProps & {
   label?: string;
@@ -9,7 +11,7 @@ type BaseSwitchProps = SwitchProps & {
 const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, ...props }, ref) => {
   return (
     <View>
-      <Text style={{ alignSelf: 'center' }}>{label}</Text>
+      <ThemedText style={{ alignSelf: 'center' }}>{label}</ThemedText>
       <Switch
         ref={ref}
         trackColor={{ false: '#767577', true: '#81b0ff' }}

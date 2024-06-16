@@ -1,7 +1,9 @@
 import { Checkbox, type CheckboxProps } from 'expo-checkbox';
 import React from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+
+import { ThemedText } from './themed-text';
 
 type BaseCheckboxProps = CheckboxProps & {
   checkboxLabel?: string;
@@ -17,9 +19,9 @@ const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
         <View style={{ alignItems: 'center' }}>
           {/* @ts-ignore */}
           <Checkbox ref={ref} {...props} style={[{ marginRight: 8 }, props.style]} />
-          <Text style={{ color: 'black', textAlign: 'center' }}>{label}</Text>
+          <ThemedText style={{ color: 'black', textAlign: 'center' }}>{label}</ThemedText>
         </View>
-        {error && <Text style={{ color: 'red' }}>{error}</Text>}
+        {error && <ThemedText style={{ color: 'red' }}>{error}</ThemedText>}
       </View>
     );
   }

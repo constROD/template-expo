@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
-import { TextInput as RNTextInput, Text, View, type TextInputProps } from 'react-native';
+import { TextInput as RNTextInput, View, type TextInputProps } from 'react-native';
+
+import { ThemedText } from './themed-text';
 
 type BaseTextInputProps = TextInputProps & {
   type?: 'text' | 'password';
@@ -12,7 +14,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
   ({ label, error, type, ...props }, ref) => {
     return (
       <View>
-        {label && <Text style={{ color: 'black' }}>{label}</Text>}
+        {label && <ThemedText style={{ color: 'black' }}>{label}</ThemedText>}
         <RNTextInput
           ref={ref}
           secureTextEntry={type === 'password'}
@@ -28,7 +30,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
             props.style,
           ]}
         />
-        {error && <Text style={{ color: 'red' }}>{error}</Text>}
+        {error && <ThemedText style={{ color: 'red' }}>{error}</ThemedText>}
       </View>
     );
   }

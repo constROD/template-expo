@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
+import { ThemedText } from '@/components/ui/themed-text';
 import { ROUTES } from '@/constants/routes';
 
 export default function HomePage() {
@@ -14,13 +15,13 @@ export default function HomePage() {
       }}
     >
       <Link href={ROUTES.SAMPLE}>
-        <Text
+        <ThemedText
           style={{
             fontFamily: 'Poppins_400Regular',
           }}
         >
           Go to Sample Page
-        </Text>
+        </ThemedText>
       </Link>
     </View>
   );

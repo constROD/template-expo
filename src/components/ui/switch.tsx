@@ -13,8 +13,8 @@ const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, style, ...props
       <Switch
         ref={ref}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
-        style={[{ marginLeft: 80 }, style]}
         {...props}
+        style={[{ marginLeft: 80 }, style]}
       />
     </View>
   );

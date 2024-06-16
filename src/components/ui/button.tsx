@@ -5,30 +5,31 @@ type ButtonProps = TouchableOpacityProps & {
   children: React.ReactNode;
 };
 
-const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
-  ({ children, style, ...props }, ref) => {
-    return (
-      <TouchableOpacity
-        ref={ref}
-        style={{
+const Button = React.forwardRef<TouchableOpacity, ButtonProps>(({ children, ...props }, ref) => {
+  return (
+    <TouchableOpacity
+      ref={ref}
+      {...props}
+      style={[
+        {
           backgroundColor: 'blue',
           padding: 10,
           borderRadius: 5,
           margin: 5,
+        },
+        props.style,
+      ]}
+    >
+      <Text
+        style={{
+          color: 'white',
+          textAlign: 'center',
         }}
-        {...props}
       >
-        <Text
-          style={{
-            color: 'white',
-            textAlign: 'center',
-          }}
-        >
-          {children}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-);
+        {children}
+      </Text>
+    </TouchableOpacity>
+  );
+});
 
 export { Button };

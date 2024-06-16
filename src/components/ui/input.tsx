@@ -13,7 +13,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
     return (
       <View>
         {label && <Text style={{ color: 'black' }}>{label}</Text>}
-        <RNTextInput ref={ref} secureTextEntry={type === 'password'} {...props} />
+        <RNTextInput ref={ref} {...props} secureTextEntry={type === 'password'} />
         {error && <Text style={{ color: 'red' }}>{error}</Text>}
       </View>
     );

@@ -16,7 +16,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
   ({ label, error, type, ...props }, ref) => {
     return (
       <View>
-        {label && <ThemedText style={{ color: 'black' }}>{label}</ThemedText>}
+        {label && <ThemedText style={{ fontSize: 12, color: 'black' }}>{label}</ThemedText>}
         <RNTextInput
           ref={ref}
           secureTextEntry={type === 'password'}
@@ -28,11 +28,14 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
               paddingVertical: 10,
               backgroundColor: 'white',
               borderRadius: 6,
+              fontSize: 14,
             },
             props.style,
           ]}
         />
-        {error && <ThemedText style={{ color: THEME_COLORS.danger }}>{error}</ThemedText>}
+        {error && (
+          <ThemedText style={{ fontSize: 12, color: THEME_COLORS.danger }}>{error}</ThemedText>
+        )}
       </View>
     );
   }

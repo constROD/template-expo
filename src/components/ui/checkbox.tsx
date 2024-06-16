@@ -17,14 +17,7 @@ const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
         <View style={{ alignItems: 'center' }}>
           {/* @ts-ignore */}
           <Checkbox ref={ref} {...props} style={[{ marginRight: 8 }, props.style]} />
-          <Text
-            style={{
-              color: 'black',
-              textAlign: 'center',
-            }}
-          >
-            {label}
-          </Text>
+          <Text style={{ color: 'black', textAlign: 'center' }}>{label}</Text>
         </View>
         {error && <Text style={{ color: 'red' }}>{error}</Text>}
       </View>

@@ -6,7 +6,7 @@ type BaseSwitchProps = SwitchProps & {
   label?: string;
 };
 
-const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, style, ...props }, ref) => {
+const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, ...props }, ref) => {
   return (
     <View>
       <Text style={{ alignSelf: 'center' }}>{label}</Text>
@@ -14,7 +14,7 @@ const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, style, ...props
         ref={ref}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         {...props}
-        style={[{ marginLeft: 80 }, style]}
+        style={[{ marginLeft: 80 }, props.style]}
       />
     </View>
   );

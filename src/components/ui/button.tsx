@@ -11,23 +11,11 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(({ children, ...p
       ref={ref}
       {...props}
       style={[
-        {
-          backgroundColor: 'blue',
-          padding: 10,
-          borderRadius: 5,
-          margin: 5,
-        },
+        { backgroundColor: 'blue', paddingHorizontal: 12, paddingVertical: 10, borderRadius: 5 },
         props.style,
       ]}
     >
-      <Text
-        style={{
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        {children}
-      </Text>
+      <Text style={{ color: 'white', textAlign: 'center' }}>{children}</Text>
     </TouchableOpacity>
   );
 });

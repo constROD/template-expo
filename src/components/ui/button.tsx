@@ -24,6 +24,7 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
           variant === 'outline' && color === 'primary' && styles['v-outline-c-primary'],
           variant === 'outline' && color === 'danger' && styles['v-outline-c-danger'],
+          props.disabled && { opacity: 0.5 },
           props.style,
         ]}
       >

@@ -1,0 +1,8 @@
+node_modules
+.expo
+
+*.config.js
+*.config.ts
+*.config.mjs
+
+expo-env.d.ts

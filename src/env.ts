@@ -1,9 +1,6 @@
 import { z } from 'zod';
 
-export const STAGES = {
-  Dev: 'dev',
-  Prod: 'prod',
-} as const;
+import { STAGES } from './constants/env';
 
 const envSchema = z.object({
   STAGE: z.nativeEnum(STAGES).default(STAGES.Dev),
@@ -12,3 +9,5 @@ const envSchema = z.object({
 export const envConfig = envSchema.parse({
   STAGE: process.env.EXPO_PUBLIC_STAGE,
 });
+
+export type EnvConfig = z.infer<typeof envSchema>;

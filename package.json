@@ -17,7 +17,7 @@
     "ios": "expo run:ios",
     "clean": "rm -rf .expo",
     "clean:pod": "pnpm clean && rm -rf ios/Pods ios/Podfile.lock && pod cache clean --all",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "pnpm eslint . --ext .ts,.tsx",
     "lint:fix": "pnpm lint --fix",
     "format": "prettier --write '**/*.ts{,x}'",
     "check:types": "tsc",
@@ -29,7 +29,7 @@
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "prettier --write",
-      "eslint --fix"
+      "pnpm eslint --fix"
     ]
   },
   "dependencies": {
@@ -60,6 +60,8 @@
     "@babel/core": "^7.24.5",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.5.0",
     "@faker-js/faker": "^8.4.1",
     "@types/react": "~18.2.79",
     "concurrently": "^8.2.2",

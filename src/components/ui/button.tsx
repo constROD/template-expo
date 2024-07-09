@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
-import { THEME_COLORS } from '@/constants/theme';
+import { COLORS } from '@/constants/theme';
 
 type ButtonProps = TouchableOpacityProps & {
   children: React.ReactNode;
@@ -16,8 +16,8 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
   ({ children, variant = 'default', color = 'primary', ...props }, ref) => {
     return (
       <TouchableOpacity
-        ref={ref}
         {...props}
+        ref={ref}
         style={[
           styles.baseButton,
           variant === 'default' && color === 'primary' && styles['v-default-c-primary'],
@@ -31,9 +31,9 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
         <ThemedText
           style={[
             { textAlign: 'center' },
-            variant === 'default' && { color: 'white' },
-            variant === 'outline' && color === 'primary' && { color: THEME_COLORS.primary },
-            variant === 'outline' && color === 'danger' && { color: THEME_COLORS.danger },
+            variant === 'default' && { color: COLORS.white },
+            variant === 'outline' && color === 'primary' && { color: COLORS.primary },
+            variant === 'outline' && color === 'danger' && { color: COLORS.danger },
           ]}
         >
           {children}
@@ -52,21 +52,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   'v-default-c-primary': {
-    color: 'white',
-    backgroundColor: THEME_COLORS.primary,
+    color: COLORS.white,
+    backgroundColor: COLORS.primary,
   },
   'v-default-c-danger': {
-    color: 'white',
-    backgroundColor: THEME_COLORS.danger,
+    color: COLORS.white,
+    backgroundColor: COLORS.danger,
   },
   'v-outline-c-primary': {
     borderWidth: 1,
     backgroundColor: 'transparent',
-    borderColor: THEME_COLORS.primary,
+    borderColor: COLORS.primary,
   },
   'v-outline-c-danger': {
     borderWidth: 1,
     backgroundColor: 'transparent',
-    borderColor: THEME_COLORS.danger,
+    borderColor: COLORS.danger,
   },
 });

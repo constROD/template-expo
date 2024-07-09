@@ -13,9 +13,9 @@ const BaseSwitch = forwardRef<Switch, BaseSwitchProps>(({ label, ...props }, ref
     <View>
       <ThemedText style={{ alignSelf: 'center' }}>{label}</ThemedText>
       <Switch
+        {...props}
         ref={ref}
         trackColor={{ false: '#767577', true: '#81b0ff' }}
-        {...props}
         style={[{ marginLeft: 80 }, props.style]}
       />
     </View>

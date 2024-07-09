@@ -1,6 +1,7 @@
 import { View, ScrollView } from 'react-native';
 
 import { ThemedText } from '@/components/ui/themed-text';
+import { COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 import { AddSampleForm } from '@/features/sample/components/add-sample-form';
 import { SampleList } from '@/features/sample/components/sample-list';
 import { useSampleStore } from '@/hooks/stores/use-sample-store';
@@ -15,16 +16,18 @@ export default function SamplePage() {
     <ScrollView
       contentContainerStyle={{
         flexGrow: 1,
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,
       }}
     >
       <View
         style={{
           alignItems: 'center',
-          padding: 20,
+          padding: SPACINGS.md,
         }}
       >
-        <ThemedText style={{ fontSize: 18, marginBottom: 20 }}>This is User Page</ThemedText>
+        <ThemedText style={{ fontSize: FONT_SIZES.lg, marginBottom: SPACINGS.md }}>
+          This is User Page
+        </ThemedText>
         <AddSampleForm />
         <SampleList />
       </View>

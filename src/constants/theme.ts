@@ -2,7 +2,7 @@ export const COLORS = {
   white: '#ffffff',
   black: '#000000',
   primary: '#1C64F2',
-  secondary: '#dbeafe',
+  secondary: '#e1effe',
   warning: '#ca8a04',
   'warning-bg': '#fef9c3',
   danger: '#dc2626',
@@ -14,6 +14,8 @@ export const COLORS = {
 
 export const FONTS = {
   regular: { fontFamily: 'Poppins_400Regular', fontWeight: 'regular' },
+  medium: { fontFamily: 'Poppins_500Medium', fontWeight: 'medium' },
+  semibold: { fontFamily: 'Poppins_600SemiBold', fontWeight: 'semibold' },
   bold: { fontFamily: 'Poppins_700Bold', fontWeight: 'bold' },
 } as const;
 
@@ -50,28 +52,28 @@ export const SHADOWS = {
     shadowColor: COLORS.black,
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 2,
-    elevation: 10,
+    shadowRadius: 3,
+    elevation: 3,
   },
   md: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 4,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 5,
+    elevation: 5,
   },
   lg: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 6,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 6 },
+    shadowRadius: 7,
+    elevation: 7,
   },
   xl: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 8 },
+    shadowRadius: 10,
     elevation: 10,
   },
 } as const;

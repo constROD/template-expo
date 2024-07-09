@@ -8,7 +8,7 @@ export default function Sample2Tab() {
   return (
     <View>
       <ThemedText>Sample 2 Tab</ThemedText>
-      <Button onPress={() => router.replace('/')}>Go back to Home</Button>
+      <Button onPress={() => router.push('/')}>Go back to Home</Button>
     </View>
   );
 }

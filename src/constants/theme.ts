@@ -18,8 +18,8 @@ export const FONTS = {
 } as const;
 
 export const FONT_SIZES = {
-  sm: 10,
-  base: 12,
+  xs: 10,
+  sm: 12,
   md: 14,
   lg: 16,
   xl: 18,
@@ -49,29 +49,29 @@ export const SHADOWS = {
   sm: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.1,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-    elevation: 2,
+    elevation: 10,
   },
   md: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 3 },
     shadowRadius: 4,
-    elevation: 3,
+    elevation: 10,
   },
   lg: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 4 },
     shadowRadius: 6,
-    elevation: 5,
+    elevation: 10,
   },
   xl: {
     shadowColor: COLORS.black,
     shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 5 },
     shadowRadius: 8,
-    elevation: 8,
+    elevation: 10,
   },
 } as const;

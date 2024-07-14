@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     paddingVertical: SPACINGS.sm,
     borderRadius: BORDER_RADIUS.sm,
   },
-
   'v-default-c-primary': {
     color: COLORS.white,
     backgroundColor: COLORS.primary,

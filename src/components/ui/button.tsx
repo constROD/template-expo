@@ -1,25 +1,27 @@
 import React from 'react';
-import { TouchableOpacity, type TouchableOpacityProps } from 'react-native';
+import { Pressable, type View, type PressableProps, type ViewProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
-import { COLORS } from '@/constants/theme';
+import { BORDER_RADIUS, COLORS, SPACINGS } from '@/constants/theme';
 
-type ButtonProps = TouchableOpacityProps & {
-  children: React.ReactNode;
-  color?: 'primary' | 'danger';
-  variant?: 'default' | 'outline';
-};
+type ButtonProps = ViewProps &
+  PressableProps & {
+    children: React.ReactNode;
+    color?: 'primary' | 'danger';
+    variant?: 'default' | 'outline';
+  };
 
-const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
+const Button = React.forwardRef<View, ButtonProps>(
   ({ children, variant = 'default', color = 'primary', ...props }, ref) => {
     return (
-      <TouchableOpacity
-        {...props}
+      <Pressable
         ref={ref}
-        style={[
+        {...props}
+        style={({ pressed }) => [
           styles.baseButton,
+          pressed && { opacity: 0.8 },
           variant === 'default' && color === 'primary' && styles['v-default-c-primary'],
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
           variant === 'outline' && color === 'primary' && styles['v-outline-c-primary'],
@@ -38,7 +40,7 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
         >
           {children}
         </ThemedText>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 );
@@ -47,10 +49,11 @@ export { Button };
 
 const styles = StyleSheet.create({
   baseButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    borderRadius: 5,
+    paddingHorizontal: SPACINGS.md,
+    paddingVertical: SPACINGS.sm,
+    borderRadius: BORDER_RADIUS.sm,
   },
+
   'v-default-c-primary': {
     color: COLORS.white,
     backgroundColor: COLORS.primary,

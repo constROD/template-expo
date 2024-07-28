@@ -10,6 +10,7 @@ export const COLORS = {
   gray: '#4b5563',
   'gray-bg': '#f3f4f6',
   link: '#2C71F6',
+  success: '#0E9F6E',
 } as const;
 
 export const FONTS = {

@@ -4,23 +4,25 @@ import { StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
-import { BORDER_RADIUS, COLORS, SPACINGS } from '@/constants/theme';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 
 type ButtonProps = ViewProps &
   PressableProps & {
     children: React.ReactNode;
     color?: 'primary' | 'danger';
     variant?: 'default' | 'outline';
+    size?: 'sm' | 'md' | 'lg';
   };
 
 const Button = React.forwardRef<View, ButtonProps>(
-  ({ children, variant = 'default', color = 'primary', ...props }, ref) => {
+  ({ children, variant = 'default', color = 'primary', size = 'md', ...props }, ref) => {
     return (
       <Pressable
         ref={ref}
         {...props}
         style={({ pressed }) => [
           styles.baseButton,
+          styles[`size-${size}`],
           pressed && { opacity: 0.8 },
           variant === 'default' && color === 'primary' && styles['v-default-c-primary'],
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
@@ -33,6 +35,7 @@ const Button = React.forwardRef<View, ButtonProps>(
         <ThemedText
           style={[
             { textAlign: 'center' },
+            styles[`text-${size}`],
             variant === 'default' && { color: COLORS.white },
             variant === 'outline' && color === 'primary' && { color: COLORS.primary },
             variant === 'outline' && color === 'danger' && { color: COLORS.danger },
@@ -49,9 +52,28 @@ export { Button };
 
 const styles = StyleSheet.create({
   baseButton: {
+    borderRadius: BORDER_RADIUS.sm,
+  },
+  'size-sm': {
+    paddingHorizontal: SPACINGS.sm,
+    paddingVertical: SPACINGS.xs,
+  },
+  'size-md': {
     paddingHorizontal: SPACINGS.md,
     paddingVertical: SPACINGS.sm,
-    borderRadius: BORDER_RADIUS.sm,
+  },
+  'size-lg': {
+    paddingHorizontal: SPACINGS.lg,
+    paddingVertical: SPACINGS.md,
+  },
+  'text-sm': {
+    fontSize: FONT_SIZES.sm,
+  },
+  'text-md': {
+    fontSize: FONT_SIZES.md,
+  },
+  'text-lg': {
+    fontSize: FONT_SIZES.lg,
   },
   'v-default-c-primary': {
     color: COLORS.white,

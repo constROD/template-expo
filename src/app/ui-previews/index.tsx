@@ -21,6 +21,7 @@ export default function UIPreviewPage() {
   const [switchValue, setSwitchValue] = useState(false);
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogOpenBottom, setDialogOpenBottom] = useState(false);
   const [radioValue, setRadioValue] = useState('option1');
   const [selectValue, setSelectValue] = useState('');
   const [toggleOption, setToggleOption] = useState('Option 1');
@@ -209,9 +210,16 @@ export default function UIPreviewPage() {
 
         <Button onPress={() => setDialogOpen(true)}>Open Dialog</Button>
         <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-          <View style={styles.dialogContent}>
+          <View>
             <ThemedText>This is a custom dialog content.</ThemedText>
             <Button onPress={() => setDialogOpen(false)}>Close Dialog</Button>
+          </View>
+        </Dialog>
+
+        <Button onPress={() => setDialogOpenBottom(true)}>Open Dialog</Button>
+        <Dialog type="bottom" open={dialogOpenBottom} onClose={() => setDialogOpen(false)}>
+          <View>
+            <ThemedText>This is a custom bottom dialog content.</ThemedText>
           </View>
         </Dialog>
       </View>
@@ -232,10 +240,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONT_SIZES.xl,
     marginBottom: SPACINGS.lg,
-  },
-  dialogContent: {
-    alignItems: 'center',
-    gap: SPACINGS.md,
   },
   sectionTitle: {
     fontSize: FONT_SIZES.lg,

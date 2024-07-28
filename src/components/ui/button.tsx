@@ -1,25 +1,27 @@
 import React from 'react';
-import { TouchableOpacity, type TouchableOpacityProps } from 'react-native';
+import { Pressable, type View, type PressableProps, type ViewProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
-import { THEME_COLORS } from '@/constants/theme';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 
-type ButtonProps = TouchableOpacityProps & {
-  children: React.ReactNode;
-  color?: 'primary' | 'danger';
-  variant?: 'default' | 'outline';
-};
+type ButtonProps = ViewProps &
+  PressableProps & {
+    children: React.ReactNode;
+    color?: 'primary' | 'danger';
+    variant?: 'default' | 'outline';
+  };
 
-const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
+const Button = React.forwardRef<View, ButtonProps>(
   ({ children, variant = 'default', color = 'primary', ...props }, ref) => {
     return (
-      <TouchableOpacity
+      <Pressable
         ref={ref}
         {...props}
-        style={[
+        style={({ pressed }) => [
           styles.baseButton,
+          pressed && { opacity: 0.8 },
           variant === 'default' && color === 'primary' && styles['v-default-c-primary'],
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
           variant === 'outline' && color === 'primary' && styles['v-outline-c-primary'],
@@ -30,15 +32,15 @@ const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
       >
         <ThemedText
           style={[
-            { textAlign: 'center' },
-            variant === 'default' && { color: 'white' },
-            variant === 'outline' && color === 'primary' && { color: THEME_COLORS.primary },
-            variant === 'outline' && color === 'danger' && { color: THEME_COLORS.danger },
+            { fontSize: FONT_SIZES.md, textAlign: 'center' },
+            variant === 'default' && { color: COLORS.white },
+            variant === 'outline' && color === 'primary' && { color: COLORS.primary },
+            variant === 'outline' && color === 'danger' && { color: COLORS.danger },
           ]}
         >
           {children}
         </ThemedText>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 );
@@ -47,26 +49,26 @@ export { Button };
 
 const styles = StyleSheet.create({
   baseButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    borderRadius: 5,
+    paddingHorizontal: SPACINGS.md,
+    paddingVertical: SPACINGS.sm,
+    borderRadius: BORDER_RADIUS.sm,
   },
   'v-default-c-primary': {
-    color: 'white',
-    backgroundColor: THEME_COLORS.primary,
+    color: COLORS.white,
+    backgroundColor: COLORS.primary,
   },
   'v-default-c-danger': {
-    color: 'white',
-    backgroundColor: THEME_COLORS.danger,
+    color: COLORS.white,
+    backgroundColor: COLORS.danger,
   },
   'v-outline-c-primary': {
     borderWidth: 1,
     backgroundColor: 'transparent',
-    borderColor: THEME_COLORS.primary,
+    borderColor: COLORS.primary,
   },
   'v-outline-c-danger': {
     borderWidth: 1,
     backgroundColor: 'transparent',
-    borderColor: THEME_COLORS.danger,
+    borderColor: COLORS.danger,
   },
 });

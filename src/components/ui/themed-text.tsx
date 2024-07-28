@@ -1,7 +1,9 @@
 import { Text, type TextProps } from 'react-native';
 
+import { FONTS } from '@/constants/theme';
+
 export type ThemedTextProps = TextProps;
 
 export function ThemedText({ ...props }: ThemedTextProps) {
-  return <Text {...props} style={[{ fontFamily: 'Poppins_400Regular' }, props.style]} />;
+  return <Text {...props} style={[FONTS.regular, props.style]} />;
 }

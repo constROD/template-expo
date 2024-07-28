@@ -1,5 +1,7 @@
 import Toast, { type ToastType } from 'react-native-toast-message';
 
+import { FONTS } from '@/constants/theme';
+
 type ToastMessageProps = {
   type: ToastType;
   message: string;
@@ -11,8 +13,8 @@ function toastMessage({ type, message, subMessage }: ToastMessageProps) {
     type,
     text1: message,
     text2: subMessage,
-    text1Style: { fontFamily: 'Poppins_400Regular', fontWeight: 'regular' },
-    text2Style: { fontFamily: 'Poppins_400Regular' },
+    text1Style: { ...FONTS.regular },
+    text2Style: { ...FONTS.regular },
   });
 }
 

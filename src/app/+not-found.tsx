@@ -2,6 +2,7 @@ import { Link, Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/ui/themed-text';
+import { SPACINGS } from '@/constants/theme';
 
 export default function NotFoundPage() {
   return (
@@ -22,10 +23,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    padding: SPACINGS.xl,
   },
   link: {
-    marginTop: 15,
-    paddingVertical: 15,
+    marginTop: SPACINGS.md,
+    paddingVertical: SPACINGS.md,
   },
 });

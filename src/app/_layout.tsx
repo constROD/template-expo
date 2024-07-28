@@ -1,4 +1,10 @@
-import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_700Bold,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+} from '@expo-google-fonts/poppins';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -12,8 +18,12 @@ export default function RootLayout() {
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
     Poppins_700Bold,
   });
+
+  // useSessionChecker();
 
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();

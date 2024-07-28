@@ -4,7 +4,7 @@ import { TextInput as RNTextInput, View, type TextInputProps } from 'react-nativ
 
 import { ThemedText } from './themed-text';
 
-import { THEME_COLORS } from '@/constants/theme';
+import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 
 type BaseTextInputProps = TextInputProps & {
   type?: 'text' | 'password';
@@ -18,23 +18,23 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
       <View>
         {label && <ThemedText style={{ fontSize: 12, color: 'black' }}>{label}</ThemedText>}
         <RNTextInput
+          {...props}
           ref={ref}
           secureTextEntry={type === 'password'}
-          {...props}
           style={[
             {
               height: 38,
-              paddingHorizontal: 12,
-              paddingVertical: 10,
-              backgroundColor: 'white',
-              borderRadius: 6,
-              fontSize: 14,
+              paddingHorizontal: SPACINGS.md,
+              paddingVertical: SPACINGS.sm,
+              backgroundColor: COLORS.white,
+              borderRadius: BORDER_RADIUS.sm,
+              fontSize: FONT_SIZES.md,
             },
             props.style,
           ]}
         />
         {error && (
-          <ThemedText style={{ fontSize: 12, color: THEME_COLORS.danger }}>{error}</ThemedText>
+          <ThemedText style={{ fontSize: FONT_SIZES.sm, color: COLORS.danger }}>{error}</ThemedText>
         )}
       </View>
     );

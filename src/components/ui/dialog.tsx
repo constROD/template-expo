@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Modal, TouchableWithoutFeedback, StyleSheet, Dimensions } from 'react-native';
 
-import { BORDER_RADIUS, SPACINGS } from '@/constants/theme';
+import { BORDER_RADIUS, COLORS, SPACINGS } from '@/constants/theme';
 
 interface DialogProps {
   children: React.ReactNode;
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    backgroundColor: 'white',
-    padding: SPACINGS.md,
+    backgroundColor: COLORS.white,
+    padding: SPACINGS.lg,
     borderRadius: BORDER_RADIUS.sm,
   },
   bottomSheet: {

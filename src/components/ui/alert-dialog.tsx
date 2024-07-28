@@ -44,7 +44,7 @@ export function AlertDialog({
 
 const styles = StyleSheet.create({
   container: {
-    gap: SPACINGS.md,
+    gap: SPACINGS.xl,
   },
   title: {
     ...FONTS.bold,

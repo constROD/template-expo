@@ -10,25 +10,46 @@ type BaseTextInputProps = TextInputProps & {
   type?: 'text' | 'password';
   label?: string;
   error?: string;
+  size?: 'sm' | 'md' | 'lg';
 };
 
 const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
-  ({ label, error, type, ...props }, ref) => {
+  ({ label, error, type, size = 'md', ...props }, ref) => {
+    const inputStyles = {
+      sm: {
+        height: 32,
+        paddingHorizontal: SPACINGS.sm,
+        paddingVertical: SPACINGS.xs,
+        fontSize: FONT_SIZES.sm,
+      },
+      md: {
+        height: 38,
+        paddingHorizontal: SPACINGS.md,
+        paddingVertical: SPACINGS.sm,
+        fontSize: FONT_SIZES.md,
+      },
+      lg: {
+        height: 44,
+        paddingHorizontal: SPACINGS.lg,
+        paddingVertical: SPACINGS.md,
+        fontSize: FONT_SIZES.lg,
+      },
+    };
+
     return (
       <View>
-        {label && <ThemedText style={{ fontSize: 12, color: 'black' }}>{label}</ThemedText>}
+        {label && (
+          <ThemedText style={{ fontSize: FONT_SIZES.sm, color: 'black' }}>{label}</ThemedText>
+        )}
         <RNTextInput
           {...props}
           ref={ref}
           secureTextEntry={type === 'password'}
           style={[
             {
-              height: 38,
-              paddingHorizontal: SPACINGS.md,
-              paddingVertical: SPACINGS.sm,
+              ...inputStyles[size],
               backgroundColor: COLORS.white,
               borderRadius: BORDER_RADIUS.sm,
-              fontSize: FONT_SIZES.md,
             },
             props.style,
           ]}

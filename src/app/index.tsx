@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import { Button } from '@/components/ui/button';
 import { ROUTES } from '@/constants/routes';
+import { COLORS } from '@/constants/theme';
 
 export default function HomePage() {
   return (
@@ -11,7 +12,7 @@ export default function HomePage() {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,
         gap: 10,
         padding: 10,
       }}
@@ -26,10 +27,13 @@ export default function HomePage() {
         Sample Tab 2
       </Button>
       <Button style={{ width: '100%' }} onPress={() => router.push('/(modals)/sample-modal-1')}>
-        Sample Modal 1
+        Sample Modal Route 1
       </Button>
       <Button style={{ width: '100%' }} onPress={() => router.push('/(modals)/sample-modal-2')}>
-        Sample Modal 2
+        Sample Modal Route 2
+      </Button>
+      <Button style={{ width: '100%' }} onPress={() => router.push('/ui-previews')}>
+        UI Previews
       </Button>
     </View>
   );

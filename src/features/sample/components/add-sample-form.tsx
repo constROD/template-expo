@@ -7,8 +7,8 @@ import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { CheckBox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { ToggleSwitch } from '@/components/ui/switch';
 import { ThemedText } from '@/components/ui/themed-text';
+import { ToggleSwitch } from '@/components/ui/toggle-switch';
 import { createSampleData } from '@/data/create-sample';
 
 export const addSampleFormSchema = z.object({

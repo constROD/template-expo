@@ -31,8 +31,11 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack>
-        <Stack.Screen name="index" />
+      <Stack screenOptions={{ headerTitleAlign: 'center' }}>
+        <Stack.Screen name="index" options={{ headerTitle: 'Home', headerBackVisible: false }} />
+        <Stack.Screen name="sample/index" options={{ headerTitle: 'Sample' }} />
+        <Stack.Screen name="(modals)" options={{ headerShown: false, presentation: 'modal' }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false, headerTitle: '' }} />
       </Stack>
     </QueryClientProvider>
   );

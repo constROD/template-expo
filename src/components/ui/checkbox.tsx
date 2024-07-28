@@ -5,6 +5,8 @@ import { View } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
+import { COLORS } from '@/constants/theme';
+
 type BaseCheckboxProps = CheckboxProps & {
   checkboxLabel?: string;
   label?: string;
@@ -21,7 +23,7 @@ const BaseCheckbox = React.forwardRef<Checkbox, BaseCheckboxProps>(
           <Checkbox {...props} ref={ref} style={[{ marginRight: 8 }, props.style]} />
           <ThemedText style={{ color: 'black', textAlign: 'center' }}>{label}</ThemedText>
         </View>
-        {error && <ThemedText style={{ color: 'red' }}>{error}</ThemedText>}
+        {error && <ThemedText style={{ color: COLORS.danger }}>{error}</ThemedText>}
       </View>
     );
   }

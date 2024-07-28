@@ -1,6 +1,7 @@
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import { ThemedText } from '@/components/ui/themed-text';
+import { COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 import { AddSampleForm } from '@/features/sample/components/add-sample-form';
 import { SampleList } from '@/features/sample/components/sample-list';
 import { useSampleStore } from '@/hooks/stores/use-sample-store';
@@ -12,17 +13,24 @@ export default function SamplePage() {
   console.log('Sample Store Data: ', data);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
+    <ScrollView
+      contentContainerStyle={{
+        flexGrow: 1,
+        backgroundColor: COLORS.white,
       }}
     >
-      <ThemedText>This is User Page</ThemedText>
-      <AddSampleForm />
-      <SampleList />
-    </View>
+      <View
+        style={{
+          alignItems: 'center',
+          padding: SPACINGS.md,
+        }}
+      >
+        <ThemedText style={{ fontSize: FONT_SIZES.lg, marginBottom: SPACINGS.md }}>
+          This is User Page
+        </ThemedText>
+        <AddSampleForm />
+        <SampleList />
+      </View>
+    </ScrollView>
   );
 }

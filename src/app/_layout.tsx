@@ -14,9 +14,15 @@ import Toast from 'react-native-toast-message';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
+export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,

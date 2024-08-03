@@ -11,6 +11,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';
 
+import { TOAST_PROPS } from '@/constants/toast';
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -45,7 +47,7 @@ export default function RootLayout() {
         <Stack.Screen name="ui-previews/index" options={{ headerTitle: 'UI Previews' }} />
         <Stack.Screen name="index" options={{ headerTitle: 'Home', headerBackVisible: false }} />
       </Stack>
-      <Toast />
+      <Toast {...TOAST_PROPS} />
     </QueryClientProvider>
   );
 }

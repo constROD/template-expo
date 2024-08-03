@@ -1,8 +1,16 @@
 import React from 'react';
-import { View, Modal, TouchableWithoutFeedback, StyleSheet, Dimensions } from 'react-native';
+import {
+  View,
+  Modal,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Dimensions,
+  Platform,
+} from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import { BORDER_RADIUS, COLORS, SPACINGS } from '@/constants/theme';
+import { TOAST_PROPS } from '@/constants/toast';
 
 interface DialogProps {
   children: React.ReactNode;
@@ -27,6 +35,8 @@ export function Dialog({
     }
   };
 
+  const toastProps = Platform.OS === 'ios' ? { ...TOAST_PROPS, topOffset: 100 } : {};
+
   return (
     <Modal
       transparent
@@ -36,7 +46,7 @@ export function Dialog({
     >
       <TouchableWithoutFeedback onPress={handleOutsideClick}>
         <View style={styles.overlay}>
-          <Toast />
+          <Toast {...toastProps} />
           <TouchableWithoutFeedback>
             <View
               style={[
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
     right: 0,
     borderTopLeftRadius: BORDER_RADIUS.sm,
     borderTopRightRadius: BORDER_RADIUS.sm,
-    maxHeight: height * 0.85,
+    maxHeight: Platform.OS === 'ios' ? height * 0.8 : height * 0.85,
   },
   popup: {
     width: width * 0.9,

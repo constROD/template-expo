@@ -22,6 +22,8 @@
 - `src/features` - for feature modules. **(Only if needed)**
   - `src/features/<feature-name>` - for feature module.
     - `src/features/<feature-name>/components` - for components.
+      - `src/features/<feature-name>/components/<component-name>.tsx` - for component.
+      - `src/features/<feature-name>/components/<component-name>-store.tsx` - for component's zustand store. **(Only if needed)**
     - `src/features/<feature-name>/constants` - for constants.
     - `src/features/<feature-name>/utils` - for utilities.
 

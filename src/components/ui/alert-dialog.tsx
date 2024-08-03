@@ -27,7 +27,7 @@ export function AlertDialog({
   onConfirm,
 }: AlertDialogProps) {
   return (
-    <Dialog open={open} onClose={onClose} closeOnOutsideClick={false}>
+    <Dialog open={open} onClose={onClose} preventCloseOnClickOutside>
       <View style={styles.container}>
         <ThemedText style={styles.title}>{title}</ThemedText>
         <ThemedText style={styles.description}>{description}</ThemedText>

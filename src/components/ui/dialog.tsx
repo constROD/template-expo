@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Modal, TouchableWithoutFeedback, StyleSheet, Dimensions } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import { BORDER_RADIUS, COLORS, SPACINGS } from '@/constants/theme';
 
@@ -7,7 +8,8 @@ interface DialogProps {
   children: React.ReactNode;
   open: boolean;
   type?: 'bottom' | 'popup';
-  closeOnOutsideClick?: boolean;
+  preventCloseOnClickOutside?: boolean;
+  fullHeight?: boolean;
   onClose: () => void;
 }
 
@@ -15,11 +17,12 @@ export function Dialog({
   children,
   open,
   type = 'popup',
-  closeOnOutsideClick = true,
+  preventCloseOnClickOutside = false,
+  fullHeight = false,
   onClose,
 }: DialogProps) {
   const handleOutsideClick = () => {
-    if (closeOnOutsideClick) {
+    if (!preventCloseOnClickOutside) {
       onClose();
     }
   };
@@ -33,8 +36,15 @@ export function Dialog({
     >
       <TouchableWithoutFeedback onPress={handleOutsideClick}>
         <View style={styles.overlay}>
+          <Toast />
           <TouchableWithoutFeedback>
-            <View style={[styles.content, type === 'bottom' ? styles.bottomSheet : styles.popup]}>
+            <View
+              style={[
+                styles.content,
+                type === 'bottom' ? styles.bottomSheet : styles.popup,
+                fullHeight && { height: 99999 },
+              ]}
+            >
               {children}
             </View>
           </TouchableWithoutFeedback>
@@ -52,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 999,
   },
   content: {
     backgroundColor: COLORS.white,
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
     right: 0,
     borderTopLeftRadius: BORDER_RADIUS.sm,
     borderTopRightRadius: BORDER_RADIUS.sm,
-    maxHeight: height * 0.8,
+    maxHeight: height * 0.85,
   },
   popup: {
     width: width * 0.9,

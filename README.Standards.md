@@ -16,6 +16,8 @@
 - `src/app` - for expo app router.
   - `src/app/<route-name>/index.tsx` - for route page component.
   - `src/app/<route-name>/_components` - for route page components.
+    - `src/app/<route-name>/_components/<component-name>.tsx` - for route page component.
+    - `src/app/<route-name>/_components/<component-name>-store.tsx` - for route page component's zustand store. **(Only if needed)**
 
 ### Features
 

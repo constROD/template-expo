@@ -13,6 +13,7 @@
   "license": "MIT",
   "main": "expo-router/entry",
   "scripts": {
+    "build:android-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "clean": "rm -rf .expo",

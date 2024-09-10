@@ -19,7 +19,7 @@
     "clean": "rm -rf .expo",
     "clean:android": "cd android && ./gradlew clean && cd ..",
     "clean:pod": "rm -rf ios/Pods ios/Podfile.lock && pod cache clean --all",
-    "build:android-release": "cd android && ./gradlew assembleRelease && cd ..",
+    "build:android-release": "pnpm prebuild && cd android && ./gradlew assembleRelease && cd ..",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "pnpm lint --fix",
     "format": "prettier --write '**/*.ts{,x}'",

@@ -1,6 +1,11 @@
 import React from 'react';
-import { Pressable, type View, type PressableProps, type ViewProps } from 'react-native';
-import { StyleSheet } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  type View,
+  type PressableProps,
+  type ViewProps,
+} from 'react-native';
 
 import { ThemedText } from './themed-text';
 
@@ -12,10 +17,23 @@ type ButtonProps = ViewProps &
     color?: 'primary' | 'danger';
     variant?: 'default' | 'outline';
     size?: 'sm' | 'md' | 'lg';
+    loading?: boolean;
+    fullWidth?: boolean;
   };
 
 const Button = React.forwardRef<View, ButtonProps>(
-  ({ children, variant = 'default', color = 'primary', size = 'md', ...props }, ref) => {
+  (
+    {
+      children,
+      variant = 'default',
+      color = 'primary',
+      size = 'md',
+      loading = false,
+      fullWidth = false,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <Pressable
         ref={ref}
@@ -28,13 +46,15 @@ const Button = React.forwardRef<View, ButtonProps>(
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
           variant === 'outline' && color === 'primary' && styles['v-outline-c-primary'],
           variant === 'outline' && color === 'danger' && styles['v-outline-c-danger'],
-          props.disabled && { opacity: 0.5 },
+          fullWidth && styles.fullWidth,
           props.style,
+          (loading || props.disabled) && styles.buttonOpacity,
         ]}
+        disabled={props.disabled || loading}
       >
         <ThemedText
           style={[
-            { textAlign: 'center' },
+            styles.buttonText,
             styles[`text-${size}`],
             variant === 'default' && { color: COLORS.white },
             variant === 'outline' && color === 'primary' && { color: COLORS.primary },
@@ -53,6 +73,7 @@ export { Button };
 const styles = StyleSheet.create({
   baseButton: {
     borderRadius: BORDER_RADIUS.sm,
+    alignSelf: 'flex-start',
   },
   'size-sm': {
     paddingHorizontal: SPACINGS.sm,
@@ -92,5 +113,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'transparent',
     borderColor: COLORS.danger,
+  },
+  buttonOpacity: {
+    opacity: 0.5,
+  },
+  buttonText: {
+    textAlign: 'center',
+  },
+  fullWidth: {
+    alignSelf: 'stretch',
   },
 });

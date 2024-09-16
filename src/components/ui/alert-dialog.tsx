@@ -13,7 +13,9 @@ interface AlertDialogProps {
   description: string;
   confirmLabel?: string;
   cancelLabel?: string;
-  onClose: () => void;
+  confirmColor?: 'primary' | 'danger';
+  loading?: boolean;
+  onCancel: () => void;
   onConfirm: () => void;
 }
 
@@ -23,19 +25,23 @@ export function AlertDialog({
   description,
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
-  onClose,
+  confirmColor = 'primary',
+  loading = false,
+  onCancel,
   onConfirm,
 }: AlertDialogProps) {
   return (
-    <Dialog open={open} onClose={onClose} preventCloseOnClickOutside>
+    <Dialog open={open} onClose={onCancel} preventCloseOnClickOutside>
       <View style={styles.container}>
         <ThemedText style={styles.title}>{title}</ThemedText>
         <ThemedText style={styles.description}>{description}</ThemedText>
         <View style={styles.buttonContainer}>
-          <Button variant="outline" onPress={onClose}>
+          <Button variant="outline" onPress={onCancel} disabled={loading} fullWidth>
             {cancelLabel}
           </Button>
-          <Button onPress={onConfirm}>{confirmLabel}</Button>
+          <Button onPress={onConfirm} loading={loading} color={confirmColor} fullWidth>
+            {confirmLabel}
+          </Button>
         </View>
       </View>
     </Dialog>
@@ -54,8 +60,6 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.md,
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
     gap: SPACINGS.md,
   },
 });

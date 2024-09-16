@@ -5,9 +5,10 @@ import { View, Pressable, StyleSheet } from 'react-native';
 import { ThemedText } from './themed-text';
 
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
+import { type Option } from '@/types/common';
 
 type BaseToggleButtonGroupProps = {
-  options: string[];
+  options: Option[];
   size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'danger';
   value?: string;
@@ -20,24 +21,24 @@ const BaseToggleButtonGroup = React.forwardRef<View, BaseToggleButtonGroupProps>
       <View ref={ref} style={[styles.container, styles[`container-${color}`]]}>
         {options.map(option => (
           <Pressable
-            key={option}
+            key={option.value}
             style={({ pressed }) => [
               styles.button,
               styles[`button-${size}`],
-              value === option && styles[`activeButton-${color}`],
+              value === option.value && styles[`activeButton-${color}`],
               pressed && { opacity: 0.8 },
             ]}
-            onPress={() => onValueChange?.(option)}
+            onPress={() => onValueChange?.(option.value)}
           >
             <ThemedText
               style={[
                 styles.buttonText,
                 styles[`buttonText-${size}`],
                 styles[`buttonText-${color}`],
-                value === option && styles.activeButtonText,
+                value === option.value && styles.activeButtonText,
               ]}
             >
-              {option}
+              {option.label}
             </ThemedText>
           </Pressable>
         ))}

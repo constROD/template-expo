@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { StyleSheet, Pressable, View } from 'react-native';
 
 import { SPACINGS } from '@/constants/theme';
@@ -6,16 +6,20 @@ import { SPACINGS } from '@/constants/theme';
 type IconButtonProps = {
   icon: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
-  onPress: () => void;
+  onPress?: () => void;
 };
 
-export function IconButton({ onPress, icon, size = 'md' }: IconButtonProps) {
-  return (
-    <Pressable onPress={onPress}>
-      <View style={[styles.iconButton, styles[`size-${size}`]]}>{icon}</View>
-    </Pressable>
-  );
-}
+export const IconButton = forwardRef<View, IconButtonProps>(
+  ({ onPress, icon, size = 'md' }, ref) => {
+    return (
+      <Pressable onPress={onPress}>
+        <View ref={ref} style={[styles.iconButton, styles[`size-${size}`]]}>
+          {icon}
+        </View>
+      </Pressable>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   iconButton: {

@@ -15,6 +15,7 @@ function toastMessage({ type, message, subMessage }: ToastMessageProps) {
     text2: subMessage,
     text1Style: { ...FONTS.regular },
     text2Style: { ...FONTS.regular },
+    swipeable: true,
   });
 }
 

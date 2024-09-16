@@ -171,24 +171,35 @@ export default function UIPreviewPage() {
           options={selectOptions}
           value={selectValue}
           onValueChange={setSelectValue}
-          placeholder="Choose an option"
         />
 
         <ThemedText style={styles.sectionTitle}>Toggle Buttons</ThemedText>
         <ToggleButtonGroup
-          options={['Option 1', 'Option 2', 'Option 3']}
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
           value={toggleOption}
           onValueChange={setToggleOption}
           size="sm"
         />
         <ToggleButtonGroup
-          options={['Option 1', 'Option 2', 'Option 3']}
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
           value={toggleOption}
           onValueChange={setToggleOption}
           size="md"
         />
         <ToggleButtonGroup
-          options={['Option 1', 'Option 2', 'Option 3']}
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
           value={toggleOption}
           onValueChange={setToggleOption}
           size="lg"
@@ -201,7 +212,7 @@ export default function UIPreviewPage() {
           open={alertDialogOpen}
           title="Alert Dialog"
           description="This is an example of an alert dialog."
-          onClose={() => setAlertDialogOpen(false)}
+          onCancel={() => setAlertDialogOpen(false)}
           onConfirm={() => {
             setAlertDialogOpen(false);
             Alert.success('Alert dialog confirmed!');

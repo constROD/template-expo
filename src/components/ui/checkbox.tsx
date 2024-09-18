@@ -56,7 +56,7 @@ export function CheckBox<TControl extends object>({
         control={control}
         name={name}
         render={({ field: { onChange, value } }) => (
-          <BaseCheckbox onValueChange={onChange} value={value} {...props} />
+          <BaseCheckbox {...props} onValueChange={onChange} value={value} />
         )}
       />
     );

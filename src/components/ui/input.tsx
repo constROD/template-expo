@@ -7,7 +7,7 @@ import { ThemedText } from './themed-text';
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 
 type BaseTextInputProps = TextInputProps & {
-  type?: 'text' | 'password';
+  type?: 'text' | 'password' | 'number';
   label?: string;
   error?: string;
   size?: 'sm' | 'md' | 'lg';
@@ -59,7 +59,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
           <ThemedText
             style={{
               fontSize: FONT_SIZES.sm,
-              color: disabled ? COLORS.gray : COLORS.gray,
+              color: disabled ? COLORS['gray'] : COLORS['gray'],
             }}
           >
             {label}
@@ -72,7 +72,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
             backgroundColor: COLORS.white,
             borderRadius: BORDER_RADIUS.xs,
             borderWidth: variant === 'outline' ? 1 : 0,
-            borderColor: variant === 'outline' ? COLORS.gray : 'transparent',
+            borderColor: variant === 'outline' ? COLORS['gray'] : 'transparent',
           }}
         >
           {leftIcon && (
@@ -84,12 +84,13 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
             {...props}
             ref={ref}
             secureTextEntry={type === 'password'}
-            placeholderTextColor={disabled ? COLORS.gray : COLORS.gray}
+            keyboardType={type === 'number' ? 'numeric' : 'default'}
+            placeholderTextColor={disabled ? COLORS['gray'] : COLORS['gray']}
             style={{
               ...inputStyles[size],
               flex: 1,
               borderWidth: 0,
-              color: disabled ? COLORS.gray : COLORS.black,
+              color: disabled ? COLORS['gray'] : COLORS.black,
             }}
           />
           {rightIcon && (
@@ -118,7 +119,7 @@ export function Input<TControl extends object>({ control, name, ...props }: Inpu
         control={control}
         name={name}
         render={({ field: { onChange, onBlur, value } }) => (
-          <BaseTextInput onBlur={onBlur} onChangeText={onChange} value={value} {...props} />
+          <BaseTextInput {...props} onBlur={onBlur} onChangeText={onChange} value={value} />
         )}
       />
     );

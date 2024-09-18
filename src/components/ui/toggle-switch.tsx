@@ -43,7 +43,7 @@ export function ToggleSwitch<TControl extends object>({
         control={control}
         name={name}
         render={({ field: { onChange, value } }) => (
-          <BaseSwitch onValueChange={onChange} value={value} {...props} />
+          <BaseSwitch {...props} onValueChange={onChange} value={value} />
         )}
       />
     );

@@ -63,7 +63,7 @@ export function ToggleButtonGroup<TControl extends object>({
         control={control}
         name={name}
         render={({ field: { onChange, value } }) => (
-          <BaseToggleButtonGroup onValueChange={onChange} value={value} {...props} />
+          <BaseToggleButtonGroup {...props} onValueChange={onChange} value={value} />
         )}
       />
     );

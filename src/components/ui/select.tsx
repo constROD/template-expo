@@ -75,7 +75,7 @@ export function Select<TControl extends object>({
         control={control}
         name={name}
         render={({ field: { onChange, value } }) => (
-          <BaseSelect onValueChange={onChange} value={value} {...props} />
+          <BaseSelect {...props} onValueChange={onChange} value={value} />
         )}
       />
     );
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: FONT_SIZES.sm,
     marginBottom: SPACINGS.xs,
-    color: COLORS.gray,
+    color: COLORS['gray'],
   },
   select: {
     backgroundColor: COLORS.white,
     borderRadius: BORDER_RADIUS.sm,
     borderWidth: 1,
-    borderColor: COLORS.gray,
+    borderColor: COLORS['gray'],
     justifyContent: 'center',
   },
   'select-sm': {

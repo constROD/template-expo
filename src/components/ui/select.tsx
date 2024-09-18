@@ -1,7 +1,7 @@
 import { Picker } from '@react-native-picker/picker';
 import React from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
-import { View, StyleSheet, type ViewStyle } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
 
@@ -16,7 +16,7 @@ type BaseSelectProps = {
   value?: string;
   defaultValue?: string;
   disabled?: boolean;
-  style?: ViewStyle;
+  placeholder?: string;
   onValueChange?: (value: string) => void;
 };
 
@@ -28,20 +28,35 @@ const pickerItemStyles = {
 
 const BaseSelect = React.forwardRef<Picker<string>, BaseSelectProps>(
   (
-    { label, options, error, size = 'md', value, defaultValue, disabled, style, onValueChange },
+    {
+      label,
+      options,
+      error,
+      size = 'md',
+      value,
+      defaultValue,
+      disabled,
+      placeholder = 'Select',
+      onValueChange,
+    },
     ref
   ) => {
     return (
-      <View style={{ width: '100%' }}>
+      <View>
         {label && <ThemedText style={styles.label}>{label}</ThemedText>}
         <View style={[styles.select, styles[`select-${size}`], disabled && styles.disabled]}>
           <Picker
             ref={ref}
-            selectedValue={value ?? defaultValue}
+            selectedValue={value ?? defaultValue ?? ''}
             onValueChange={onValueChange}
             style={[styles.picker, pickerItemStyles[size]]}
             enabled={!disabled}
           >
+            <Picker.Item
+              label={placeholder}
+              value=""
+              style={{ ...pickerItemStyles[size], color: COLORS.gray }}
+            />
             {options.map(option => (
               <Picker.Item
                 key={option.value}
@@ -88,13 +103,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: FONT_SIZES.sm,
     marginBottom: SPACINGS.xs,
-    color: COLORS['gray'],
+    color: COLORS.gray,
   },
   select: {
     backgroundColor: COLORS.white,
     borderRadius: BORDER_RADIUS.sm,
     borderWidth: 1,
-    borderColor: COLORS['gray'],
+    borderColor: COLORS.gray,
     justifyContent: 'center',
   },
   'select-sm': {

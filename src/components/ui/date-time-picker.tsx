@@ -3,16 +3,21 @@ import { ChevronDown, Calendar, Clock } from 'lucide-react-native';
 import React, { useState, useCallback, forwardRef } from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
 import { View, type TouchableOpacity, StyleSheet, Pressable } from 'react-native';
+import { Platform } from 'react-native';
 
 import { ThemedText } from '@/components/ui/themed-text';
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
-import { formatDateToMonthDayYear, formatDateToTime } from '@/utils/date-time';
+import {
+  formatDateToMonthDayYear,
+  formatDateToMonthDayYearTime,
+  formatDateToTime,
+} from '@/utils/date-time';
 
 interface BaseDateTimePickerFieldProps {
   label?: string;
   placeholder?: string;
   value?: Date;
-  type?: 'date' | 'time';
+  type?: 'datetime' | 'date' | 'time';
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
@@ -20,7 +25,10 @@ interface BaseDateTimePickerFieldProps {
 }
 
 const BaseDateTimePickerField = forwardRef<TouchableOpacity, BaseDateTimePickerFieldProps>(
-  ({ label, value, error, type = 'date', size = 'md', disabled, placeholder, onChange }, ref) => {
+  (
+    { label, value, error, type = 'datetime', size = 'md', disabled, placeholder, onChange },
+    ref
+  ) => {
     const [internalValue, setInternalValue] = useState<Date | undefined>(value);
     const [show, setShow] = useState(false);
 
@@ -28,7 +36,7 @@ const BaseDateTimePickerField = forwardRef<TouchableOpacity, BaseDateTimePickerF
 
     const handleChange = useCallback(
       (_: unknown, selectedDate?: Date) => {
-        setShow(false);
+        setShow(Platform.OS === 'ios');
         if (selectedDate) {
           setInternalValue(selectedDate);
           onChange?.(selectedDate);
@@ -37,12 +45,20 @@ const BaseDateTimePickerField = forwardRef<TouchableOpacity, BaseDateTimePickerF
       [onChange]
     );
 
-    const placeholderValue = placeholder ?? (type === 'date' ? 'Select Date' : 'Select Time');
+    const placeholderValue =
+      placeholder ??
+      (type === 'datetime'
+        ? 'Select Date & Time'
+        : type === 'date'
+          ? 'Select Date'
+          : 'Select Time');
 
     const displayValue = internalValue
-      ? type === 'date'
-        ? formatDateToMonthDayYear(internalValue)
-        : formatDateToTime(internalValue)
+      ? type === 'datetime'
+        ? `${formatDateToMonthDayYearTime(internalValue)}`
+        : type === 'date'
+          ? formatDateToMonthDayYear(internalValue)
+          : formatDateToTime(internalValue)
       : placeholderValue;
 
     const actualValue = internalValue ?? new Date();
@@ -56,20 +72,20 @@ const BaseDateTimePickerField = forwardRef<TouchableOpacity, BaseDateTimePickerF
           onPress={handlePress}
           disabled={disabled}
         >
-          {type === 'date' ? (
-            <Calendar size={FONT_SIZES[size]} color={COLORS.gray} />
+          {type === 'datetime' ? (
+            <Calendar size={FONT_SIZES[size]} color={COLORS.black} />
           ) : (
-            <Clock size={FONT_SIZES[size]} color={COLORS.gray} />
+            <Clock size={FONT_SIZES[size]} color={COLORS.black} />
           )}
           <ThemedText style={[styles.selectText, styles[`selectText-${size}`]]}>
             {displayValue}
           </ThemedText>
-          <ChevronDown size={FONT_SIZES[size]} color={COLORS.gray} />
+          <ChevronDown size={FONT_SIZES[size]} color={COLORS.black} />
         </Pressable>
         {error && <ThemedText style={styles.error}>{error}</ThemedText>}
         {show && (
           <RNDateTimePicker
-            display="spinner"
+            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
             value={actualValue}
             mode={type}
             onChange={handleChange}
@@ -112,7 +128,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: FONT_SIZES.sm,
     marginBottom: SPACINGS.xs,
-    color: COLORS.gray,
+    color: COLORS.black,
   },
   select: {
     flexDirection: 'row',
@@ -120,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: BORDER_RADIUS.sm,
     borderWidth: 1,
-    borderColor: COLORS.gray,
+    borderColor: COLORS.black,
   },
   'select-sm': {
     height: 32,
@@ -137,7 +153,7 @@ const styles = StyleSheet.create({
   selectText: {
     flex: 1,
     paddingLeft: SPACINGS.sm,
-    color: COLORS.gray,
+    color: COLORS.black,
   },
   'selectText-sm': {
     fontSize: FONT_SIZES.sm,
@@ -155,6 +171,6 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: 0.5,
-    backgroundColor: COLORS['gray-bg'],
+    backgroundColor: COLORS.secondary,
   },
 });

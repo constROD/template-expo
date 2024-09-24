@@ -1,14 +1,23 @@
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import React, { forwardRef } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, type ScrollViewProps } from 'react-native';
 
 import { COLORS, SPACINGS } from '@/constants/theme';
 
-export function SafeScrollView({ children }: { children: React.ReactNode }) {
-  return (
-    <SafeAreaView style={styles.safeAreaViewContainer}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>{children}</ScrollView>
-    </SafeAreaView>
-  );
+interface SafeScrollViewProps extends ScrollViewProps {
+  children: React.ReactNode;
 }
+
+export const SafeScrollView = forwardRef<ScrollView, SafeScrollViewProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <SafeAreaView style={styles.safeAreaViewContainer}>
+        <ScrollView ref={ref} contentContainerStyle={styles.contentContainer} {...props}>
+          {children}
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   safeAreaViewContainer: {

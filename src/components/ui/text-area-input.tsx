@@ -12,7 +12,6 @@ type BaseTextAreaInputProps = Omit<TextInputProps, 'multiline'> & {
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'outline';
   disabled?: boolean;
-  rows?: number;
 };
 
 const textAreaStyles = {
@@ -37,7 +36,7 @@ const textAreaStyles = {
 };
 
 const BaseTextAreaInput = forwardRef<RNTextInput, BaseTextAreaInputProps>(
-  ({ label, error, size = 'md', variant = 'default', disabled, rows, ...props }, ref) => {
+  ({ label, error, size = 'md', variant = 'default', disabled, ...props }, ref) => {
     const [height, setHeight] = useState(textAreaStyles[size].minHeight);
 
     const handleContentSizeChange = (event: {
@@ -72,7 +71,6 @@ const BaseTextAreaInput = forwardRef<RNTextInput, BaseTextAreaInputProps>(
             ref={ref}
             multiline
             onContentSizeChange={handleContentSizeChange}
-            numberOfLines={rows}
             placeholderTextColor={disabled ? COLORS.gray : COLORS.gray}
             style={{
               ...textAreaStyles[size],

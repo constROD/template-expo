@@ -11,11 +11,11 @@ import { ThemedText } from './themed-text';
 
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
 
-type ButtonProps = ViewProps &
+export type ButtonProps = ViewProps &
   PressableProps & {
     children: React.ReactNode;
     color?: 'primary' | 'danger';
-    variant?: 'default' | 'outline';
+    variant?: 'default' | 'outline' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     loading?: boolean;
     fullWidth?: boolean;
@@ -46,6 +46,7 @@ const Button = React.forwardRef<View, ButtonProps>(
           variant === 'default' && color === 'danger' && styles['v-default-c-danger'],
           variant === 'outline' && color === 'primary' && styles['v-outline-c-primary'],
           variant === 'outline' && color === 'danger' && styles['v-outline-c-danger'],
+          variant === 'ghost' && styles['v-ghost'],
           fullWidth && styles.fullWidth,
           props.style,
           (loading || props.disabled) && styles.buttonOpacity,
@@ -59,6 +60,8 @@ const Button = React.forwardRef<View, ButtonProps>(
             variant === 'default' && { color: COLORS.white },
             variant === 'outline' && color === 'primary' && { color: COLORS.primary },
             variant === 'outline' && color === 'danger' && { color: COLORS.danger },
+            variant === 'ghost' && color === 'primary' && { color: COLORS.primary },
+            variant === 'ghost' && color === 'danger' && { color: COLORS.danger },
           ]}
         >
           {children}
@@ -113,6 +116,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'transparent',
     borderColor: COLORS.danger,
+  },
+  'v-ghost': {
+    backgroundColor: 'transparent',
   },
   buttonOpacity: {
     opacity: 0.5,

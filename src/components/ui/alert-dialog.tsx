@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { Button } from './button';
+import { Button, type ButtonProps } from './button';
 import { Dialog } from './dialog';
 import { ThemedText } from './themed-text';
 
@@ -12,8 +12,11 @@ interface AlertDialogProps {
   title: string;
   description: string;
   confirmLabel?: string;
+  confirmColor?: ButtonProps['color'];
+  confirmVariant?: ButtonProps['variant'];
   cancelLabel?: string;
-  confirmColor?: 'primary' | 'danger';
+  cancelColor?: ButtonProps['color'];
+  cancelVariant?: ButtonProps['variant'];
   loading?: boolean;
   onCancel: () => void;
   onConfirm: () => void;
@@ -24,8 +27,11 @@ export function AlertDialog({
   title,
   description,
   confirmLabel = 'Confirm',
-  cancelLabel = 'Cancel',
+  confirmVariant = 'default',
   confirmColor = 'primary',
+  cancelLabel = 'Cancel',
+  cancelVariant = 'ghost',
+  cancelColor = 'primary',
   loading = false,
   onCancel,
   onConfirm,
@@ -36,11 +42,23 @@ export function AlertDialog({
         <ThemedText style={styles.title}>{title}</ThemedText>
         <ThemedText style={styles.description}>{description}</ThemedText>
         <View style={styles.buttonContainer}>
-          <Button variant="outline" onPress={onCancel} disabled={loading} fullWidth>
-            {cancelLabel}
-          </Button>
-          <Button onPress={onConfirm} loading={loading} color={confirmColor} fullWidth>
+          <Button
+            fullWidth
+            variant={confirmVariant}
+            onPress={onConfirm}
+            loading={loading}
+            color={confirmColor}
+          >
             {confirmLabel}
+          </Button>
+          <Button
+            fullWidth
+            variant={cancelVariant}
+            onPress={onCancel}
+            disabled={loading}
+            color={cancelColor}
+          >
+            {cancelLabel}
           </Button>
         </View>
       </View>

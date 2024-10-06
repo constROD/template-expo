@@ -6,9 +6,9 @@ on:
 env:
   MYAPP_RELEASE_KEYSTORE: ${{ secrets.MYAPP_RELEASE_KEYSTORE }}
   MYAPP_RELEASE_STORE_FILE: ${{ secrets.MYAPP_RELEASE_STORE_FILE }}
-  MYAPP_UPLOAD_KEY_ALIAS: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
-  MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-  MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+  MYAPP_RELEASE_KEY_ALIAS: ${{ secrets.MYAPP_RELEASE_KEY_ALIAS }}
+  MYAPP_RELEASE_STORE_PASSWORD: ${{ secrets.MYAPP_RELEASE_STORE_PASSWORD }}
+  MYAPP_RELEASE_KEY_PASSWORD: ${{ secrets.MYAPP_RELEASE_KEY_PASSWORD }}
 
 jobs:
   build:
@@ -48,13 +48,6 @@ jobs:
         run: |
           mkdir -p android/app/$(dirname $MYAPP_RELEASE_STORE_FILE)
           echo $MYAPP_RELEASE_KEYSTORE | base64 -di > android/app/$MYAPP_RELEASE_STORE_FILE
-
-      - name: Update gradle.properties
-        run: |
-          echo "MYAPP_UPLOAD_STORE_FILE=$MYAPP_RELEASE_STORE_FILE" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_KEY_ALIAS=$MYAPP_UPLOAD_KEY_ALIAS" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_STORE_PASSWORD=$MYAPP_UPLOAD_STORE_PASSWORD" >> android/gradle.properties
-          echo "MYAPP_UPLOAD_KEY_PASSWORD=$MYAPP_UPLOAD_KEY_PASSWORD" >> android/gradle.properties
 
       - name: Set environment variables
         run: |

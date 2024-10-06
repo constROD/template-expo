@@ -49,6 +49,13 @@ jobs:
           mkdir -p android/app/$(dirname $MYAPP_RELEASE_STORE_FILE)
           echo $MYAPP_RELEASE_KEYSTORE | base64 -di > android/app/$MYAPP_RELEASE_STORE_FILE
 
+      - name: Update gradle.properties
+        run: |
+          echo "MYAPP_UPLOAD_STORE_FILE=$MYAPP_RELEASE_STORE_FILE" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_ALIAS=$MYAPP_UPLOAD_KEY_ALIAS" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_STORE_PASSWORD=$MYAPP_UPLOAD_STORE_PASSWORD" >> android/gradle.properties
+          echo "MYAPP_UPLOAD_KEY_PASSWORD=$MYAPP_UPLOAD_KEY_PASSWORD" >> android/gradle.properties
+
       - name: Set environment variables
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
@@ -67,7 +74,7 @@ jobs:
         run: |
           pnpm prebuild
           cd android
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --stacktrace
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v4

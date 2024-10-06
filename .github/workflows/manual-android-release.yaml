@@ -1,0 +1,76 @@
+name: Manual Android Release
+
+on:
+  workflow_dispatch:
+
+env:
+  MYAPP_RELEASE_KEYSTORE: ${{ secrets.MYAPP_RELEASE_KEYSTORE }}
+  MYAPP_RELEASE_STORE_FILE: ${{ secrets.MYAPP_RELEASE_STORE_FILE }}
+  MYAPP_UPLOAD_KEY_ALIAS: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
+  MYAPP_UPLOAD_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+  MYAPP_UPLOAD_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Decode Keystore
+        run: |
+          mkdir -p android/app/$(dirname $MYAPP_RELEASE_STORE_FILE)
+          echo $MYAPP_RELEASE_KEYSTORE | base64 -di > android/app/$MYAPP_RELEASE_STORE_FILE
+
+      - name: Set environment variables
+        run: |
+          if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
+            echo "EXPO_PUBLIC_API_URL=${{ secrets.PROD_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_STAGE=${{ secrets.PROD_EXPO_PUBLIC_STAGE }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PROD_EXPO_PUBLIC_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_SUPABASE_URL=${{ secrets.PROD_EXPO_PUBLIC_SUPABASE_URL }}" >> $GITHUB_ENV
+          else
+            echo "EXPO_PUBLIC_API_URL=${{ secrets.DEV_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_STAGE=${{ secrets.DEV_EXPO_PUBLIC_STAGE }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.DEV_EXPO_PUBLIC_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_SUPABASE_URL=${{ secrets.DEV_EXPO_PUBLIC_SUPABASE_URL }}" >> $GITHUB_ENV
+          fi
+
+      - name: Build Release APK
+        run: |
+          pnpm prebuild
+          cd android
+          ./gradlew assembleRelease
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: android/app/build/outputs/apk/release/app-release.apk

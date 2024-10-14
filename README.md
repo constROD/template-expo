@@ -1,5 +1,9 @@
 # Template Expo by bossROD
 
+## Rules
+
+Please read the repo **Standards** here [README.Standards.md](./README.Standards.md)
+
 ## Clone
 
 ```bash
@@ -30,6 +34,4 @@ pnpm android
 pnpm ios
 ```
 
-## Rules
 
-Please read the repo **Standards** here [README.Standards.md](./README.Standards.md)

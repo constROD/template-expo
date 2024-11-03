@@ -62,6 +62,7 @@ export default function UIPreviewPage() {
         <Input
           size="sm"
           label="Small Input"
+          variant="outline"
           value={inputValue}
           onChangeText={setInputValue}
           placeholder="Enter text"
@@ -69,6 +70,7 @@ export default function UIPreviewPage() {
         <Input
           size="md"
           label="Medium Input"
+          variant="outline"
           value={inputValue}
           onChangeText={setInputValue}
           placeholder="Enter text"
@@ -76,6 +78,7 @@ export default function UIPreviewPage() {
         <Input
           size="lg"
           label="Large Input"
+          variant="outline"
           value={inputValue}
           onChangeText={setInputValue}
           placeholder="Enter text"
@@ -130,11 +133,13 @@ export default function UIPreviewPage() {
           />
           <IconButton
             size="md"
+            variant="outline"
             onPress={() => Alert.info('Medium icon button pressed!')}
             icon={<ThemedText>🔔</ThemedText>}
           />
           <IconButton
             size="lg"
+            variant="ghost"
             onPress={() => Alert.info('Large icon button pressed!')}
             icon={<ThemedText>🔔</ThemedText>}
           />
@@ -244,7 +249,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   container: {
-    alignItems: 'center',
     padding: SPACINGS.md,
     gap: SPACINGS.md,
   },

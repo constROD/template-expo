@@ -9,7 +9,7 @@ import { CheckBox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { ThemedText } from '@/components/ui/themed-text';
 import { ToggleSwitch } from '@/components/ui/toggle-switch';
-import { createSampleData } from '@/data/create-sample';
+import { createSampleData } from '@/data/sample/create-sample';
 
 export const addSampleFormSchema = z.object({
   email: z.string().email().toLowerCase(),

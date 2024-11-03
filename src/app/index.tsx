@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { View } from 'react-native';
 
 import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/constants/routes';
 import { COLORS } from '@/constants/theme';
 
 export default function HomePage() {
@@ -17,7 +16,7 @@ export default function HomePage() {
         padding: 10,
       }}
     >
-      <Button style={{ width: '100%' }} onPress={() => router.push(ROUTES.SAMPLE)}>
+      <Button style={{ width: '100%' }} onPress={() => router.push('/sample')}>
         Go to Sample Page
       </Button>
       <Button style={{ width: '100%' }} onPress={() => router.push('/(tabs)/sample-1')}>

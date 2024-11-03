@@ -59,7 +59,7 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
           <ThemedText
             style={{
               fontSize: FONT_SIZES.sm,
-              color: disabled ? COLORS['gray'] : COLORS['gray'],
+              color: COLORS['input-label'],
             }}
           >
             {label}
@@ -69,10 +69,10 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: COLORS.white,
+            backgroundColor: COLORS['input-bg'],
             borderRadius: BORDER_RADIUS.xs,
             borderWidth: variant === 'outline' ? 1 : 0,
-            borderColor: variant === 'outline' ? COLORS['gray'] : 'transparent',
+            borderColor: variant === 'outline' ? COLORS.border : 'transparent',
           }}
         >
           {leftIcon && (
@@ -85,12 +85,12 @@ const BaseTextInput = forwardRef<RNTextInput, BaseTextInputProps>(
             ref={ref}
             secureTextEntry={type === 'password'}
             keyboardType={type === 'number' ? 'numeric' : 'default'}
-            placeholderTextColor={disabled ? COLORS['gray'] : COLORS['gray']}
+            placeholderTextColor={COLORS['input-label']}
             style={{
               ...inputStyles[size],
               flex: 1,
               borderWidth: 0,
-              color: disabled ? COLORS['gray'] : COLORS.black,
+              color: disabled ? COLORS['input-label'] : COLORS.foreground,
             }}
           />
           {rightIcon && (

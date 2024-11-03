@@ -55,14 +55,14 @@ const BaseSelect = React.forwardRef<Picker<string>, BaseSelectProps>(
             <Picker.Item
               label={placeholder}
               value=""
-              style={{ ...pickerItemStyles[size], color: COLORS.gray }}
+              style={{ ...pickerItemStyles[size], color: COLORS.foreground }}
             />
             {options.map(option => (
               <Picker.Item
                 key={option.value}
                 label={option.label}
                 value={option.value}
-                style={pickerItemStyles[size]}
+                style={{ ...pickerItemStyles[size], color: COLORS.foreground }}
                 enabled={!disabled}
               />
             ))}
@@ -103,13 +103,13 @@ const styles = StyleSheet.create({
   label: {
     fontSize: FONT_SIZES.sm,
     marginBottom: SPACINGS.xs,
-    color: COLORS.gray,
+    color: COLORS['input-label'],
   },
   select: {
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS['input-bg'],
     borderRadius: BORDER_RADIUS.sm,
     borderWidth: 1,
-    borderColor: COLORS.gray,
+    borderColor: COLORS.border,
     justifyContent: 'center',
   },
   'select-sm': {
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
   },
   disabled: {
     opacity: 0.5,
-    backgroundColor: COLORS['gray-bg'],
+    backgroundColor: COLORS['input-label'],
   },
 });

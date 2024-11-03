@@ -1,22 +1,26 @@
 import React, { forwardRef } from 'react';
-import { StyleSheet, Pressable, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import { Button, type ButtonProps } from './button';
 
 import { SPACINGS } from '@/constants/theme';
 
 type IconButtonProps = {
   icon: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
+  color?: ButtonProps['color'];
+  variant?: ButtonProps['variant'];
   onPress?: () => void;
 };
 
 export const IconButton = forwardRef<View, IconButtonProps>(
-  ({ onPress, icon, size = 'md' }, ref) => {
+  ({ icon, size = 'md', color = 'primary', variant = 'default', onPress }, ref) => {
     return (
-      <Pressable onPress={onPress}>
+      <Button color={color} variant={variant} onPress={onPress}>
         <View ref={ref} style={[styles.iconButton, styles[`size-${size}`]]}>
           {icon}
         </View>
-      </Pressable>
+      </Button>
     );
   }
 );

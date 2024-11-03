@@ -1,16 +1,58 @@
+/**
+ * Theme Color Naming Conventions
+ *
+ * Base Colors:
+ * - `<color>`: The main color value (e.g., primary, secondary)
+ *
+ * Text Colors:
+ * - `foreground`: Default text color used throughout the app
+ * - `<color>-foreground`: Text color designed to be visible on top of the corresponding `<color>`
+ *
+ * Background Colors:
+ * - `background`: Default background color of the app
+ * - `<color>-bg`: Background color variant of the main color, typically lighter
+ *
+ * Examples:
+ * - primary + primary-foreground = Button with blue background and white text
+ * - warning + warning-bg = Alert with yellow text on light yellow background
+ */
 export const COLORS = {
   white: '#ffffff',
   black: '#000000',
+
+  background: '#f5f5f5',
+  foreground: '#111827',
+
   primary: '#1C64F2',
+  'primary-bg': '#1C64F2',
+  'primary-foreground': '#ffffff',
+
   secondary: '#e1effe',
+  'secondary-bg': '#e1effe',
+  'secondary-foreground': '#111827',
+
   warning: '#ca8a04',
   'warning-bg': '#fef9c3',
+  'warning-foreground': '#111827',
+
+  success: '#0E9F6E',
+  'success-bg': '#d1fae5',
+  'success-foreground': '#111827',
+
   danger: '#dc2626',
   'danger-bg': '#fee2e2',
+  'danger-foreground': '#111827',
+
   gray: '#4b5563',
   'gray-bg': '#f3f4f6',
+  'gray-foreground': '#111827',
+
+  'input-label': '#4b5563',
+  'input-bg': '#ffffff',
+  'input-foreground': '#111827',
+
+  border: '#e5e7eb',
   link: '#2C71F6',
-  success: '#0E9F6E',
 } as const;
 
 export const FONTS = {

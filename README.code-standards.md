@@ -25,7 +25,6 @@
   - `src/features/<feature-name>` - for feature module.
     - `src/features/<feature-name>/components` - for components.
       - `src/features/<feature-name>/components/<component-name>.tsx` - for component.
-      - `src/features/<feature-name>/components/<component-name>-store.tsx` - for component's zustand store. 
     - `src/features/<feature-name>/constants` - for constants.
     - `src/features/<feature-name>/data` - for data access layer.
     - `src/features/<feature-name>/hooks` - for custom hooks, tanstack query and mutation, zustand store.

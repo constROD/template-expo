@@ -5,8 +5,16 @@ node_modules/
 *.config.ts
 *.config.mjs
 
-expo-env.d.ts
+*-lock.json
+*-lock.yaml
+*.lock
+
+.env
+.env.*
+.env-*
 
 **/data/core
 **/data/index.ts
 **/data/*.gen.ts
+
+expo-env.d.ts

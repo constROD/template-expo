@@ -12,3 +12,5 @@ node_modules/
 **/data/core
 **/data/index.ts
 **/data/*.gen.ts
+
+expo-env.d.ts

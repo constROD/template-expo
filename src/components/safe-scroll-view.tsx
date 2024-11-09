@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import React, { forwardRef, useCallback, useState } from 'react';
 import {
   RefreshControl,
@@ -12,16 +13,22 @@ import { COLORS, SPACINGS } from '@/constants/theme';
 type SafeScrollViewProps = ScrollViewProps & {
   children: React.ReactNode;
   refreshing?: boolean;
-  onRefresh?: () => void;
+  onRefresh?: () => Promise<void> | void;
 };
 
 export const SafeScrollView = forwardRef<ScrollView, SafeScrollViewProps>(
   ({ children, refreshing = false, onRefresh, ...props }, ref) => {
+    const { refreshing: internalRefreshing, onRefresh: internalOnRefresh } = useSafeScrollView({
+      onRefresh,
+    });
+
     return (
       <SafeAreaView style={styles.safeAreaViewContainer}>
         <ScrollView
           ref={ref}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          refreshControl={
+            <RefreshControl refreshing={internalRefreshing} onRefresh={internalOnRefresh} />
+          }
           {...props}
           contentContainerStyle={[styles.contentContainer, props.contentContainerStyle]}
         >
@@ -35,7 +42,7 @@ export const SafeScrollView = forwardRef<ScrollView, SafeScrollViewProps>(
 const styles = StyleSheet.create({
   safeAreaViewContainer: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.background,
   },
   contentContainer: {
     flexGrow: 1,
@@ -49,15 +56,20 @@ const styles = StyleSheet.create({
 });
 
 export type UseSafeScrollViewProps = {
-  onRefresh: () => Promise<void>;
+  onRefresh?: () => Promise<void> | void;
 };
 
-export function useSafeScrollView({ onRefresh }: UseSafeScrollViewProps) {
+export function useSafeScrollView({ onRefresh }: UseSafeScrollViewProps = {}) {
   const [refreshing, setRefreshing] = useState(false);
+  const queryClient = useQueryClient();
 
   const onRefreshCallback = useCallback(async () => {
     setRefreshing(true);
-    await onRefresh();
+    if (onRefresh) {
+      await onRefresh();
+    } else {
+      await queryClient.invalidateQueries();
+    }
     setRefreshing(false);
   }, [onRefresh]);
 

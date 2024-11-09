@@ -1,5 +1,5 @@
-node_modules
-.expo
+node_modules/
+.expo/
 
 *.config.js
 *.config.ts
@@ -7,6 +7,6 @@ node_modules
 
 expo-env.d.ts
 
-src/data/core
-src/data/index.ts
-src/data/*.gen.ts
+**/data/core
+**/data/index.ts
+**/data/*.gen.ts

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
+import { SafeScrollView } from '@/components/safe-scroll-view';
 import { Alert } from '@/components/ui/alert';
 import { AlertDialog } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
@@ -33,7 +34,7 @@ export default function UIPreviewPage() {
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
+    <SafeScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
         <ThemedText style={styles.title}>UI Components Preview</ThemedText>
 
@@ -236,10 +237,11 @@ export default function UIPreviewPage() {
         <Dialog type="bottom" open={dialogOpenBottom} onClose={() => setDialogOpen(false)}>
           <View>
             <ThemedText>This is a custom bottom dialog content.</ThemedText>
+            <Button onPress={() => setDialogOpenBottom(false)}>Close Dialog</Button>
           </View>
         </Dialog>
       </View>
-    </ScrollView>
+    </SafeScrollView>
   );
 }
 

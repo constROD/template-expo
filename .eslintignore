@@ -6,3 +6,7 @@ node_modules
 *.config.mjs
 
 expo-env.d.ts
+
+src/data/core
+src/data/index.ts
+src/data/*.gen.ts

@@ -19,6 +19,8 @@ export type ButtonProps = ViewProps &
     size?: 'sm' | 'md' | 'lg';
     loading?: boolean;
     fullWidth?: boolean;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
   };
 
 const Button = React.forwardRef<View, ButtonProps>(
@@ -30,6 +32,8 @@ const Button = React.forwardRef<View, ButtonProps>(
       size = 'md',
       loading = false,
       fullWidth = false,
+      leftIcon,
+      rightIcon,
       ...props
     },
     ref
@@ -53,6 +57,7 @@ const Button = React.forwardRef<View, ButtonProps>(
         ]}
         disabled={props.disabled || loading}
       >
+        {leftIcon}
         <ThemedText
           style={[
             styles.buttonText,
@@ -66,6 +71,7 @@ const Button = React.forwardRef<View, ButtonProps>(
         >
           {children}
         </ThemedText>
+        {rightIcon}
       </Pressable>
     );
   }
@@ -77,6 +83,10 @@ const styles = StyleSheet.create({
   baseButton: {
     borderRadius: BORDER_RADIUS.sm,
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    gap: SPACINGS.sm,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   'size-sm': {
     paddingHorizontal: SPACINGS.sm,

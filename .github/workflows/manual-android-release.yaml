@@ -52,13 +52,13 @@ jobs:
       - name: Set environment variables
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
-            echo "EXPO_PUBLIC_API_URL=${{ secrets.PROD_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_STAGE=${{ secrets.PROD_EXPO_PUBLIC_STAGE }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_API_URL=${{ secrets.PROD_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PROD_EXPO_PUBLIC_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_SUPABASE_URL=${{ secrets.PROD_EXPO_PUBLIC_SUPABASE_URL }}" >> $GITHUB_ENV
           else
-            echo "EXPO_PUBLIC_API_URL=${{ secrets.DEV_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_STAGE=${{ secrets.DEV_EXPO_PUBLIC_STAGE }}" >> $GITHUB_ENV
+            echo "EXPO_PUBLIC_API_URL=${{ secrets.DEV_EXPO_PUBLIC_API_URL }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.DEV_EXPO_PUBLIC_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
             echo "EXPO_PUBLIC_SUPABASE_URL=${{ secrets.DEV_EXPO_PUBLIC_SUPABASE_URL }}" >> $GITHUB_ENV
           fi

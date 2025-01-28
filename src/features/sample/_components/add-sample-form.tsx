@@ -3,7 +3,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { View, StyleSheet } from 'react-native';
 import { z } from 'zod';
 
-import { createSampleData } from '../data/create-sample';
+import { createSampleData } from '../_data/create-sample';
 
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';

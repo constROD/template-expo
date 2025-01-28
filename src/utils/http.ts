@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { envConfig } from '@/env';
-import { useSessionStore } from '@/hooks/stores/use-session-store';
+import { useSessionStore } from '@/stores/use-session-store';
 
 const publicAxiosInstance = axios.create();
 

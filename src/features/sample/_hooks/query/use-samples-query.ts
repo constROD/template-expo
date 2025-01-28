@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getSamplesData } from '../../data/get-samples';
+import { getSamplesData } from '../../_data/get-samples';
 
 export function useSamplesQuery() {
   return useQuery({

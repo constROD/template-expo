@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { type GetSampleDataArgs, getSampleData } from '../../data/get-sample';
+import { type GetSampleDataArgs, getSampleData } from '../../_data/get-sample';
 
 export type UseSampleQueryArgs = GetSampleDataArgs & {
   enabled?: boolean;

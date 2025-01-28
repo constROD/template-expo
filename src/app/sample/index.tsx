@@ -2,9 +2,9 @@ import { View, ScrollView } from 'react-native';
 
 import { ThemedText } from '@/components/ui/themed-text';
 import { COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
-import { AddSampleForm } from '@/features/sample/components/add-sample-form';
-import { SampleList } from '@/features/sample/components/sample-list';
-import { useSampleStore } from '@/features/sample/hooks/stores/use-sample-store';
+import { AddSampleForm } from '@/features/sample/_components/add-sample-form';
+import { SampleList } from '@/features/sample/_components/sample-list';
+import { useSampleStore } from '@/features/sample/_hooks/stores/use-sample-store';
 
 export default function SamplePage() {
   const { data } = useSampleStore();

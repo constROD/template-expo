@@ -62,5 +62,3 @@
   - `src/features/<feature-name>/_services` - for feature's business logic and orchestration of data access layer. **(Only if necessary)**
   - `src/features/<feature-name>/_types` - for feature's types.
   - `src/features/<feature-name>/_utils` - for feature's utilities.
-
-

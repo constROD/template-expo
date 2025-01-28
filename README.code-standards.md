@@ -21,7 +21,7 @@
   
 ## Domain Folders
 - `src` - main source code and shared common modules.
-- `src/app` - main app router folder.
+- `src/app` - main router folder.
 - `src/features` - main features folder. **(Only if necessary)**
 
 ### Shared Modules

@@ -1,4 +1,4 @@
-# Standards
+# Project Structure & Code Organization
 
 ## Naming conventions
 - `kebab-case` - for all folders/files.
@@ -49,7 +49,7 @@
   - `src/app/<route-name>/_types` - for route's types module.
   - `src/app/<route-name>/_utils` - for route's utilities module.
 
-### Features Domain
+### Features Domain (Optional)
 - `src/features/<feature-name>` - for feature.
   - `src/features/<feature-name>/index.ts` - for feature's entry point.
   - `src/features/<feature-name>/_assets` - for feature's assets. **(Only if necessary)**

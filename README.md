@@ -2,7 +2,7 @@
 
 ## Rules
 
-Please read the repo **Code Standards** here [README.code-standards.md](./README.code-standards.md)
+Please read the repo **Code Standards** here [README.project-structure.md](./README.project-structure.md)
 
 ## Clone
 

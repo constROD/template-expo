@@ -2,7 +2,7 @@
 
 ## Rules
 
-Please read the repo **Code Standards** here [README.project-structure.md](./README.project-structure.md)
+Please read the repo's **Project Structure & Code Organization** here [README.project-structure.md](./README.project-structure.md)
 
 ## Clone
 

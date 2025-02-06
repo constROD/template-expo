@@ -1,5 +1,10 @@
 node_modules/
 .expo/
+android/
+ios/
+.vscode/
+.husky/
+.github/
 
 *.config.js
 *.config.ts

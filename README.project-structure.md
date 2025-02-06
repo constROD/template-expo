@@ -58,7 +58,7 @@
   - `src/features/<feature-name>/_assets` - for feature's assets. **(Only if necessary)**
   - `src/features/<feature-name>/_components` - for feature's components.
   - `src/features/<feature-name>/_constants` - for feature's constants.
-  - `src/features/<feature-name>/_contexts` - for feature's react context api module. **(Only if necessary)**
+  - `src/features/<feature-name>/_contexts` - for feature's react context api. **(Only if necessary)**
   - `src/features/<feature-name>/_data` - for feature's data access layer. **(Only if necessary)**
   - `src/features/<feature-name>/_hooks` - for feature's custom hooks, tanstack query and mutation. **(Only if necessary)**
   - `src/features/<feature-name>/_lib` - for feature's 3rd party integrations libraries. **(Only if necessary)**

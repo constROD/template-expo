@@ -18,7 +18,12 @@
   "ignorePaths": [
     "node_modules/",
     "build/",
-    ".husky",
+    "ios/",
+    "android/",
+    ".expo/",
+    ".husky/",
+    ".vscode/",
+    ".github/",
     "pnpm-lock.yaml",
     "package.json"
   ]

@@ -1,39 +1,51 @@
-// import axios from 'axios';
-// import { useSegments, useRouter } from 'expo-router';
-import { createContext, useContext, type ReactNode, useState, useMemo } from 'react';
+// import { useQueryClient } from '@tanstack/react-query';
+// import { useRouter } from 'expo-router';
+import { createContext, useContext, type ReactNode, useMemo } from 'react';
 
 // import { ROUTES } from '@/constants/routes';
-// import { envConfig } from '@/env';
-// import { usePrevious } from '@/hooks/use-previous';
+// import { useProfileQuery } from '@/hooks/query/me/use-profile-query';
+// import { privateAxios } from '@/lib/axios';
+// import { useSessionStore } from '@/stores/use-session-store';
 
 interface AuthContextType {
-  accessToken: string | null;
-  setAccessToken: (accessToken: string | null) => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
-  const [accessToken, setAccessToken] = useState<string | null>(null);
+  // const router = useRouter();
+  // const queryClient = useQueryClient();
+
+  // const accessToken = useSessionStore(state => state.accessToken);
+  // const sessionStoreEvents = useSessionStore(state => ({
+  //   setAccessToken: state.setAccessToken,
+  //   clearSession: state.clearSession,
+  // }));
+
+  const logout = async () => {
+    // await queryClient.resetQueries();
+    // sessionStoreEvents.clearSession();
+    // router.replace(ROUTES.AUTH.LOGIN);
+  };
+
+  // const { refetch: refetchProfile } = useProfileQuery();
 
   // useEffect(() => {
-  //   axios
-  //     .get(`${envConfig.API_URL}/auth/verify-session`)
-  //     .then(response => {
-  //       setAccessToken(response.data.access_token);
-  //     })
-  //     .catch(error => {
-  //       // eslint-disable-next-line no-console
-  //       console.error(error);
-  //     });
-  // }, []);
+  //   const verifySession = async () => {
+  //     try {
+  //       const response = await privateAxios.get(`/auth/verify-session`);
+  //       sessionStoreEvents.setAccessToken(response.data.access_token);
+  //       await refetchProfile();
+  //     } catch {
+  //       sessionStoreEvents.clearSession();
+  //     }
+  //   };
 
-  // useAppChecker(accessToken);
+  //   verifySession();
+  // }, [accessToken]);
 
-  const contextValue = useMemo(
-    () => ({ accessToken, setAccessToken }),
-    [accessToken, setAccessToken]
-  );
+  const contextValue = useMemo(() => ({ logout }), [logout]);
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
@@ -41,33 +53,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 export function useAuthContext() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuthContext must be used within an AuthContextProvider');
   }
   return context;
 }
-
-// export function useAppChecker(accessToken: string | null) {
-//   const segments = useSegments();
-//   const router = useRouter();
-
-//   const currentSegment = segments[0];
-
-//   const prevSegment = usePrevious(currentSegment);
-
-//   useEffect(() => {
-//     const inPublicGroup = currentSegment === '(public)';
-//     const inProtectedGroup =
-//       currentSegment === '(user)' || currentSegment === '(admin)' ;
-
-//     if (!accessToken && inProtectedGroup) {
-//       router.replace(ROUTES.AUTH.LOGIN);
-//     } else if (
-//       accessToken &&
-//       !inProtectedGroup &&
-//       !inPublicGroup &&
-//       prevSegment !== currentSegment
-//     ) {
-//       router.replace(ROUTES.INDEX);
-//     }
-//   }, [accessToken, segments, router, prevSegment, currentSegment]);
-// }

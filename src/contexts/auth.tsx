@@ -7,11 +7,11 @@ import { createContext, useContext, type ReactNode, useMemo } from 'react';
 // import { privateAxios } from '@/lib/axios';
 // import { useSessionStore } from '@/stores/use-session-store';
 
-interface AuthContextType {
+export type AuthContextState = {
   logout: () => Promise<void>;
-}
+};
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextState | undefined>(undefined);
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   // const router = useRouter();

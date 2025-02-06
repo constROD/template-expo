@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';
 
 import { TOAST_PROPS } from '@/constants/toast';
+import { AuthContextProvider } from '@/contexts/auth';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,22 +33,22 @@ export default function RootLayout() {
     Poppins_700Bold,
   });
 
-  // useSessionChecker();
-
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Stack screenOptions={{ headerTitleAlign: 'center' }}>
-        <Stack.Screen name="(modals)" options={{ headerShown: false, presentation: 'modal' }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false, headerTitle: '' }} />
-        <Stack.Screen name="sample/index" options={{ headerTitle: 'Sample' }} />
-        <Stack.Screen name="ui-previews/index" options={{ headerTitle: 'UI Previews' }} />
-        <Stack.Screen name="index" options={{ headerTitle: 'Home', headerBackVisible: false }} />
-      </Stack>
-      <Toast {...TOAST_PROPS} />
+      <AuthContextProvider>
+        <Stack screenOptions={{ headerTitleAlign: 'center' }}>
+          <Stack.Screen name="(modals)" options={{ headerShown: false, presentation: 'modal' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false, headerTitle: '' }} />
+          <Stack.Screen name="sample/index" options={{ headerTitle: 'Sample' }} />
+          <Stack.Screen name="ui-previews/index" options={{ headerTitle: 'UI Previews' }} />
+          <Stack.Screen name="index" options={{ headerTitle: 'Home', headerBackVisible: false }} />
+        </Stack>
+        <Toast {...TOAST_PROPS} />
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }

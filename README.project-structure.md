@@ -1,4 +1,4 @@
-# Project Structure & Code Organization
+# Standards
 
 ## Naming conventions
 - `kebab-case` - for all folders/files.
@@ -11,6 +11,7 @@
 - `assets` - for assets.
 - `components` - for components.
 - `constants` - for constants.
+- `contexts` - for contexts.
 - `data` - for data access layer. (e.g. `api`, `database`).
 - `hooks` - for custom hooks, tanstack query and mutation
 - `lib` - for 3rd party integrations libraries.
@@ -29,6 +30,7 @@
 - `src/components` - for shared components module.
   - `src/components/ui/*` - for ui components (`button`, `input` & etc).
 - `src/constants` - for shared constants module.
+- `src/contexts` - for shared contexts module.
 - `src/data` - for shared data access layer module. (e.g. `api`, `database`).
 - `src/hooks` - for shared custom hooks, tanstack query and mutation
   - `src/hooks/use-<hook-name>.ts` - for shared custom hook.
@@ -45,16 +47,18 @@
   - `src/app/<route-name>/index.tsx` - for route's entry point.
   - `src/app/<route-name>/_components` - for route's components module.
   - `src/app/<route-name>/_constants` - for route's constants module.
+  - `src/app/<route-name>/_contexts` - for route's contexts module. **(Only if necessary)**
   - `src/app/<route-name>/_hooks` - for route's hooks module.
   - `src/app/<route-name>/_types` - for route's types module.
   - `src/app/<route-name>/_utils` - for route's utilities module.
 
-### Features Domain (Optional)
+### Features Domain
 - `src/features/<feature-name>` - for feature.
   - `src/features/<feature-name>/index.ts` - for feature's entry point.
   - `src/features/<feature-name>/_assets` - for feature's assets. **(Only if necessary)**
   - `src/features/<feature-name>/_components` - for feature's components.
   - `src/features/<feature-name>/_constants` - for feature's constants.
+  - `src/features/<feature-name>/_contexts` - for feature's contexts. **(Only if necessary)**
   - `src/features/<feature-name>/_data` - for feature's data access layer. **(Only if necessary)**
   - `src/features/<feature-name>/_hooks` - for feature's custom hooks, tanstack query and mutation. **(Only if necessary)**
   - `src/features/<feature-name>/_lib` - for feature's 3rd party integrations libraries. **(Only if necessary)**

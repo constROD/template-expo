@@ -1,6 +1,6 @@
 // import { useQueryClient } from '@tanstack/react-query';
 // import { useRouter } from 'expo-router';
-import { createContext, useContext, type ReactNode, useMemo } from 'react';
+import { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react';
 
 // import { ROUTES } from '@/constants/routes';
 // import { useProfileQuery } from '@/hooks/query/me/use-profile-query';
@@ -23,11 +23,11 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   //   clearSession: state.clearSession,
   // }));
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     // await queryClient.resetQueries();
     // sessionStoreEvents.clearSession();
     // router.replace(ROUTES.AUTH.LOGIN);
-  };
+  }, []);
 
   // const { refetch: refetchProfile } = useProfileQuery();
 

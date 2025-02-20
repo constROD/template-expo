@@ -1,6 +1,6 @@
 import { ScrollView, Text, View } from 'react-native';
 
-import { useSamplesQuery } from '../_hooks/query/use-samples';
+import { useSamplesQuery } from '../_hooks/query/use-samples-query';
 
 export function SampleList() {
   const { data = [], isLoading, isFetching } = useSamplesQuery();

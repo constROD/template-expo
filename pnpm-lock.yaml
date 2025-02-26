@@ -35,6 +35,9 @@ importers:
       expo-build-properties:
         specifier: ^0.12.5
         version: 0.12.5(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      expo-camera:
+        specifier: ~15.0.16
+        version: 15.0.16(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       expo-checkbox:
         specifier: ^3.0.0
         version: 3.0.0
@@ -47,6 +50,9 @@ importers:
       expo-dev-client:
         specifier: ^4.0.29
         version: 4.0.29(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
+      expo-device:
+        specifier: ~6.0.2
+        version: 6.0.2(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       expo-linking:
         specifier: ~6.3.1
         version: 6.3.1(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
@@ -2867,6 +2873,11 @@ packages:
     peerDependencies:
       expo: '*'
 
+  expo-camera@15.0.16:
+    resolution: {integrity: sha512-FLE02DMqkjwsb7IugKAqQvBe6s+TCQeb5LupO1+r//wAhBwmHncOrc6zV95ZEC2f9PTPK34nFH/s8CDGiVzIAA==}
+    peerDependencies:
+      expo: '*'
+
   expo-checkbox@3.0.0:
     resolution: {integrity: sha512-ZfNUawE0Bp/Xa5Gwtn04yfg6rCnKdqdmBXvEGbYg5U+IfRfLh+ocLiiBAcx760DfdYpzMGQOGpUtWQeEVmJwNw==}
 
@@ -2897,6 +2908,11 @@ packages:
 
   expo-dev-menu@5.0.23:
     resolution: {integrity: sha512-ztDvrSdFGkRbMoQlGLyKMS6CslMGylonVW4kQHUrBQApCL0c2NtRwLlr2bA1SXF0S7qYdPPg/ayLnj7DDR5X2w==}
+    peerDependencies:
+      expo: '*'
+
+  expo-device@6.0.2:
+    resolution: {integrity: sha512-sCt91CuTmAuMXX4SlFOn4lIos2UIr8vb0jDstDDZXys6kErcj0uynC7bQAMreU5uRUTKMAl4MAMpKt9ufCXPBw==}
     peerDependencies:
       expo: '*'
 
@@ -5281,6 +5297,10 @@ packages:
   typescript@5.3.3:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
+    hasBin: true
+
+  ua-parser-js@0.7.40:
+    resolution: {integrity: sha512-us1E3K+3jJppDBa3Tl0L3MOJiGhe1C6P0+nIvQAFYbxlMAx0h81eOwLmU57xgqToduDDPx3y5QsdjPfDu+FgOQ==}
     hasBin: true
 
   ua-parser-js@1.0.38:
@@ -9411,6 +9431,11 @@ snapshots:
       expo: 51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
       semver: 7.6.2
 
+  expo-camera@15.0.16(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
+    dependencies:
+      expo: 51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
+      invariant: 2.2.4
+
   expo-checkbox@3.0.0: {}
 
   expo-clipboard@6.0.3(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
@@ -9456,6 +9481,11 @@ snapshots:
       expo: 51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
       expo-dev-menu-interface: 1.8.4(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7)))
       semver: 7.6.2
+
+  expo-device@6.0.2(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
+    dependencies:
+      expo: 51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))
+      ua-parser-js: 0.7.40
 
   expo-file-system@17.0.1(expo@51.0.39(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))):
     dependencies:
@@ -12020,6 +12050,8 @@ snapshots:
       typed-array-byte-offset: 1.0.2
 
   typescript@5.3.3: {}
+
+  ua-parser-js@0.7.40: {}
 
   ua-parser-js@1.0.38: {}
 

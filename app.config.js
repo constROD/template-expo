@@ -55,6 +55,12 @@ export default {
           ],
         },
       ],
+      [
+        'expo-camera',
+        {
+          cameraPermission: 'Allow $(PRODUCT_NAME) to access your camera',
+        },
+      ],
     ],
     experiments: {
       typedRoutes: true,

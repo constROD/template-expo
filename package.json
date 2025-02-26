@@ -18,6 +18,7 @@
     "prebuild": "expo prebuild",
     "clean": "rm -rf .expo",
     "clean:android": "pnpm clean && rm -rf android",
+    "clean:android-release": "pnpm clean && cd android && ./gradlew clean && cd ..",
     "clean:ios": "pnpm clean && rm -rf ios",
     "clean:ios-pods": "pnpm clean && rm -rf ios/Pods ios/Podfile.lock && pod cache clean --all",
     "build:android-release": "pnpm clean:android-release && pnpm prebuild && cd android && ./gradlew assembleRelease && cd ..",

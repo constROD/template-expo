@@ -1,29 +1,25 @@
 # How to Manually Build and Release APK for Android
 
 1. Update the correct `.env` for the release.
-2. Clean the `.expo` and `android` folder.
+2. Clean the `.expo` and `android` folder and run `prebuild`
 
 ```bash
 pnpm clean:android
-```
-
-3. Build the `android` app.
-
-```bash
 pnpm prebuild
 ```
 
-4. Set up your keystore configuration in `android/local.properties`. If this file doesn't exist, create it (it's gitignored by default):
+3. Set up your keystore configuration in `android/local.properties`. If this file doesn't exist, create it (it's gitignored by default):
 
 ```properties
-RELEASE_STORE_FILE=keystore/cbattle-release-key.keystore
-RELEASE_KEY_ALIAS=cbattle-key-alias
-RELEASE_STORE_PASSWORD=cbattle
-RELEASE_KEY_PASSWORD=cbattle
+RELEASE_STORE_FILE=keystore/yourapp-release-key.keystore
+RELEASE_KEY_ALIAS=yourapp-key-alias
+RELEASE_STORE_PASSWORD=yourapp
+RELEASE_KEY_PASSWORD=yourapp
 ```
 
-5. Add a `keystore` folder in [android/app](android/app) and add the project's release keystore file in the folder.
-6. Go to [android/app/build.gradle](android/app/build.gradle) and update the following:
+4. Add the `keystore` folder in [android/app](android/app) and add the project's release keystore file in the folder.
+
+5. Go to [android/app/build.gradle](android/app/build.gradle) and update the following:
   
 ```gradle
 def getLocalProperty(key, defaultValue = null) {
@@ -57,10 +53,10 @@ android {
 }
 ```
 
-7. Build the `android` app
+6. Build the `android` app
 
 ```bash
 pnpm build:android-release
 ```
 
-8. The release APK is in here: [android/app/build/outputs/apk/release/app-release.apk](android/app/build/outputs/apk/release/app-release.apk).
+7. The release APK is in here: [android/app/build/outputs/apk/release/app-release.apk](android/app/build/outputs/apk/release/app-release.apk).

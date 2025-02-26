@@ -6,27 +6,38 @@ export function useBluetoothPermission() {
     const bluetoothScanPermission = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
       {
-        title: 'Scan Permission',
-        message: 'Bluetooth Low Energy requires Scan',
-        buttonPositive: 'OK',
+        title: 'Allow Bluetooth Scan',
+        message: 'Enable Bluetooth Scan',
+        buttonPositive: 'Allow',
+        buttonNegative: 'Never',
+        buttonNeutral: 'Ask Me Later',
       }
     );
     const bluetoothConnectPermission = await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
       {
-        title: 'Connect Permission',
-        message: 'Bluetooth Low Energy requires Connect',
-        buttonPositive: 'OK',
+        title: 'Allow Bluetooth Connect',
+        message: 'Enable Bluetooth Connect',
+        buttonPositive: 'Allow',
+        buttonNegative: 'Never',
+        buttonNeutral: 'Ask Me Later',
       }
     );
-    const fineLocationPermission = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Location Permission',
-        message: 'Bluetooth Low Energy requires Location',
-        buttonPositive: 'OK',
-      }
-    );
+
+    let fineLocationPermission = 'granted';
+
+    if (ExpoDevice.platformApiLevel && ExpoDevice.platformApiLevel < 31) {
+      fineLocationPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Allow Location',
+          message: 'Enable Location',
+          buttonPositive: 'Allow',
+          buttonNegative: 'Never',
+          buttonNeutral: 'Ask Me Later',
+        }
+      );
+    }
 
     return (
       bluetoothScanPermission === 'granted' &&
@@ -36,24 +47,22 @@ export function useBluetoothPermission() {
   };
 
   const requestPermission = async () => {
-    if (Platform.OS === 'android') {
-      if ((ExpoDevice.platformApiLevel ?? -1) < 31) {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Location Permission',
-            message: 'Bluetooth Low Energy requires Location',
-            buttonPositive: 'OK',
-          }
-        );
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      } else {
-        const isAndroid31PermissionsGranted = await requestAndroid31Permission();
-
-        return isAndroid31PermissionsGranted;
-      }
+    if (Platform.OS === 'ios') return true;
+    if (ExpoDevice.platformApiLevel && ExpoDevice.platformApiLevel < 31) {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: 'Allow Location',
+          message: 'Enable Location',
+          buttonPositive: 'Allow',
+          buttonNegative: 'Never',
+          buttonNeutral: 'Ask Me Later',
+        }
+      );
+      return granted === PermissionsAndroid.RESULTS.GRANTED;
     } else {
-      return true;
+      const isAndroid31PermissionsGranted = await requestAndroid31Permission();
+      return isAndroid31PermissionsGranted;
     }
   };
 

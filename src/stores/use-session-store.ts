@@ -1,22 +1,33 @@
-// import { create } from 'zustand';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-// export type SessionStoreState = {
-//   profile: User | null;
-//   accessToken: string | null;
-// };
+import { asyncStorageAdapter } from '@/utils/storage';
 
-// export type SessionStoreEvents = {
-//   setProfile: (profile: User | null) => void;
-//   setAccessToken: (accessToken: string | null) => void;
-//   clearSession: () => void;
-// };
+export type SessionStoreState = {
+  user: Record<string, unknown> | null;
+};
 
-// export type SessionStore = SessionStoreState & SessionStoreEvents;
+export type SessionStoreActions = {
+  reset: () => void;
+  setUser: (user: Record<string, unknown> | null) => void;
+};
 
-// export const useSessionStore = create<SessionStore>(set => ({
-//   profile: null,
-//   accessToken: null,
-//   setProfile: (profile: User | null) => set({ profile }),
-//   setAccessToken: (accessToken: string | null) => set({ accessToken }),
-//   clearSession: () => set({ profile: null, accessToken: null }),
-// }));
+export type SessionStore = SessionStoreState & SessionStoreActions;
+
+export const DEFAULT_SESSION_STORE_STATE: SessionStoreState = {
+  user: null,
+};
+
+export const useSessionStore = create<SessionStore>()(
+  persist(
+    set => ({
+      ...DEFAULT_SESSION_STORE_STATE,
+      reset: () => set(DEFAULT_SESSION_STORE_STATE),
+      setUser: (user: Record<string, unknown> | null) => set({ user }),
+    }),
+    {
+      name: '__session-storage',
+      storage: createJSONStorage(() => asyncStorageAdapter),
+    }
+  )
+);

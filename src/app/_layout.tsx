@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';
 
 import { TOAST_PROPS } from '@/constants/toast';
-import { AuthContextProvider } from '@/contexts/auth';
+import { AuthProvider } from '@/contexts/auth';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,7 +39,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
+      <AuthProvider>
         <Stack screenOptions={{ headerTitleAlign: 'center' }}>
           <Stack.Screen name="(modals)" options={{ headerShown: false, presentation: 'modal' }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false, headerTitle: '' }} />
@@ -48,7 +48,7 @@ export default function RootLayout() {
           <Stack.Screen name="index" options={{ headerTitle: 'Home', headerBackVisible: false }} />
         </Stack>
         <Toast {...TOAST_PROPS} />
-      </AuthContextProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

@@ -5,11 +5,10 @@
 
 ```bash
 pnpm clean:android && \
-pnpm prebuild && \
-touch android/local.properties 
+pnpm prebuild
 ```
 
-3. Set up your keystore configuration in [android/local.properties](android/local.properties). If this file doesn't exist, create it (it's gitignored by default):
+3. Set up your keystore configuration in [android/gradle.properties](android/gradle.properties) by appending the following values:
 
 ```properties
 RELEASE_STORE_FILE=keystore/bossrod-release-key.keystore
@@ -18,53 +17,33 @@ RELEASE_STORE_PASSWORD=bossrod
 RELEASE_KEY_PASSWORD=bossrod
 ```
 
-4. Add the `keystore` folder in [android/app](android/app) and add the project's release keystore file in the folder.
-
-5. Go to [android/app/build.gradle](android/app/build.gradle) and update the following:
+4. Go to [android/app/build.gradle](android/app/build.gradle) and update the following:
   
 ```gradle
-def getLocalProperty(key, defaultValue = null) {
-    def localProperties = new Properties()
-    def localPropertiesFile = rootProject.file('local.properties')
-    if (localPropertiesFile.exists()) {
-        localPropertiesFile.withReader('UTF-8') { reader ->
-            localProperties.load(reader)
-        }
-    }
-    return localProperties.getProperty(key, defaultValue)
-}
-
 android {
     // ... existing configs
-    
     signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
-        }
         release {
-            storeFile file(getLocalProperty('RELEASE_STORE_FILE', 'debug.keystore'))
-            storePassword getLocalProperty('RELEASE_STORE_PASSWORD', 'android')
-            keyAlias getLocalProperty('RELEASE_KEY_ALIAS', 'androiddebugkey')
-            keyPassword getLocalProperty('RELEASE_KEY_PASSWORD', 'android')
+            storeFile file(findProperty('RELEASE_STORE_FILE') ?: 'debug.keystore')
+            storePassword findProperty('RELEASE_STORE_PASSWORD') ?: 'android'
+            keyAlias findProperty('RELEASE_KEY_ALIAS') ?: 'androiddebugkey'
+            keyPassword findProperty('RELEASE_KEY_PASSWORD') ?: 'android'
         }
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
             signingConfig signingConfigs.release
-            
-            // ... existing release config
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            crunchPngs (findProperty('android.enablePngCrunchInReleaseBuilds')?.toBoolean() ?: true)
         }
     }
+    // ... existing configs
 }
 ```
+
+5. Add the `keystore` folder in [android/app](android/app) and add the project's release keystore file in the folder.
 
 6. Build the `android` app
 

@@ -6,7 +6,7 @@ import { View, StyleSheet } from 'react-native';
 import { ThemedText } from './themed-text';
 
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
-import { type Option } from '@/types/common';
+import type { Option } from '@/types/common';
 
 type BaseSelectProps = {
   options: Option[];

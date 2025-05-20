@@ -1,11 +1,29 @@
+const { version } = require('./package.json');
+
 const IS_PROD = process.env.EXPO_PUBLIC_STAGE === 'prod';
+const APP_NAME = process.env.EXPO_PUBLIC_APP_NAME;
+
+const appBundleName = APP_NAME;
+
+const appNameWithHyphens = formatAppName({
+  name: appBundleName,
+  hasHyphens: true,
+});
+const appNameWithoutHyphens = formatAppName({
+  name: appBundleName,
+  hasHyphens: false,
+});
+
+const bundleIdentifierOrPackage = IS_PROD
+  ? `com.${appNameWithoutHyphens}.prod`
+  : `com.${appNameWithoutHyphens}.dev`;
 
 export default {
   expo: {
-    name: IS_PROD ? 'Template Expo' : 'Template Expo Dev',
-    slug: IS_PROD ? 'template-expo' : 'template-expo-dev',
-    scheme: IS_PROD ? 'template-expo' : 'template-expo-dev',
-    version: '1.0.0',
+    name: IS_PROD ? appBundleName : `${appBundleName} (Dev)`,
+    slug: IS_PROD ? `${appNameWithHyphens}` : `${appNameWithHyphens}-dev`,
+    scheme: IS_PROD ? `${appNameWithHyphens}` : `${appNameWithHyphens}-dev`,
+    version,
     orientation: 'portrait',
     icon: './src/assets/img/icon.png',
     userInterfaceStyle: 'light',
@@ -17,14 +35,14 @@ export default {
     assetBundlePatterns: ['**/*'],
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'com.anonymous.templateexpo',
+      bundleIdentifier: bundleIdentifierOrPackage,
     },
     android: {
       adaptiveIcon: {
         foregroundImage: './src/assets/img/adaptive-icon.png',
         backgroundColor: '#ffffff',
       },
-      package: 'com.anonymous.templateexpo',
+      package: bundleIdentifierOrPackage,
     },
     web: {
       bundler: 'metro',
@@ -67,3 +85,10 @@ export default {
     },
   },
 };
+
+function formatAppName({ name, hasHyphens }) {
+  const formatted = name?.toLowerCase();
+  return hasHyphens
+    ? formatted?.replace(/\s+/g, '-')
+    : formatted?.replace(/\s+/g, '').replace(/[^a-z0-9]/g, '');
+}

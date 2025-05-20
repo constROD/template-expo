@@ -2,11 +2,11 @@ import React from 'react';
 import { Controller, type Control, type Path } from 'react-hook-form';
 import { View, Pressable, StyleSheet } from 'react-native';
 
-import { type ButtonProps } from './button';
+import type { ButtonProps } from './button';
 import { ThemedText } from './themed-text';
 
 import { BORDER_RADIUS, COLORS, FONT_SIZES, SPACINGS } from '@/constants/theme';
-import { type Option } from '@/types/common';
+import type { Option } from '@/types/common';
 
 type BaseToggleButtonGroupProps = {
   options: Option[];

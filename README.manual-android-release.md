@@ -7,10 +7,10 @@
 3. Set up your keystore configuration in [android/gradle.properties](android/gradle.properties) by appending the following values:
 
 ```properties
-RELEASE_STORE_FILE=keystore/cbattle-release-key.keystore
-RELEASE_KEY_ALIAS=cbattle-key-alias
-RELEASE_STORE_PASSWORD=cbattle
-RELEASE_KEY_PASSWORD=cbattle
+RELEASE_STORE_FILE=keystore/yourapp-release-key.keystore
+RELEASE_KEY_ALIAS=yourapp-key-alias
+RELEASE_STORE_PASSWORD=yourapp
+RELEASE_KEY_PASSWORD=yourapp
 ```
 
 4. Go to [android/app/build.gradle](android/app/build.gradle) and update the following:

@@ -14,9 +14,9 @@ This is a React Native Expo project with TypeScript. When working on this codeba
 
 ### 2. Rules and Patterns
 **ALWAYS** check the `@rules/` folder for specific implementation patterns before:
-- Creating query hooks → See `@rules/README.query-hooks.md`
-- Creating mutation hooks → See `@rules/README.mutation-hooks.md`
-- Creating Zustand stores → See `@rules/README.zustand-store.md`
+- Creating query hooks → See `@rules/query-hooks.md`
+- Creating mutation hooks → See `@rules/mutation-hooks.md`
+- Creating Zustand stores → See `@rules/zustand-store.md`
 - Implementing any feature that might have established patterns
 
 ### 3. Code Generation Guidelines

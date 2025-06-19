@@ -6,17 +6,17 @@ This is a React Native Expo project with TypeScript. When working on this codeba
 ## Important Instructions
 
 ### 1. Project Structure Compliance
-**ALWAYS** follow the structure and conventions defined in `@README.project-structure.md` when:
+**ALWAYS** follow the structure and conventions defined in `README.project-structure.md` when:
 - Creating new files or folders
 - Organizing code modules
 - Naming files, folders, functions, types, etc.
 - Implementing features or routes
 
 ### 2. Rules and Patterns
-**ALWAYS** check the `@rules/` folder for specific implementation patterns before:
-- Creating query hooks → See `@rules/query-hooks.md`
-- Creating mutation hooks → See `@rules/mutation-hooks.md`
-- Creating Zustand stores → See `@rules/zustand-store.md`
+**ALWAYS** check the `rules/` folder for specific implementation patterns before:
+- Creating query hooks → See `rules/query-hooks.md`
+- Creating mutation hooks → See `rules/mutation-hooks.md`
+- Creating Zustand stores → See `rules/zustand-store.md`
 - Implementing any feature that might have established patterns
 
 ### 3. Code Generation Guidelines
@@ -38,8 +38,8 @@ When generating or modifying code:
 
 ### 5. Before Making Changes
 Always:
-1. Read the relevant documentation in `@README.project-structure.md`
-2. Check for existing patterns in `@rules/` folder
+1. Read the relevant documentation in `README.project-structure.md`
+2. Check for existing patterns in `rules/` folder
 3. Look for similar implementations in the codebase
 4. Maintain consistency with existing code style
 

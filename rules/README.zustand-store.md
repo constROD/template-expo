@@ -1,8 +1,3 @@
----
-description: # Guidelines for Zustand Store
-globs: 
-alwaysApply: false
----
 # Guidelines for Zustand Stores
 
 ## Purpose and Overview

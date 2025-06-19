@@ -21,6 +21,9 @@
 - `camelCase` - for functions, zod schemas and etc.
 
 ## Miscellaneous Folders
+- `docs` - for any to-do plan workflows or documentation
+- `prompts` - for prompts format
+- `rules` - for standards or rules of the repo
 - `.expo` - for expo configuration
 - `assets` - for static assets (images, fonts, etc.)
 
